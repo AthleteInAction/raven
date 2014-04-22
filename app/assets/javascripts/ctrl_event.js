@@ -69,7 +69,7 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 
 				$scope.getInvitations(map);
 				$scope.getDays();
-				$scope.getComments();
+				$scope.commentsLoop();
 
 				/*$.each(data.event.invitations,function(key,val){
 					if (val.invitee_id == current_user.id){
@@ -129,9 +129,18 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 		// Get Comments
 		////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////
-		$scope.getComments = function(){
+		$scope.commentsLoop = function(){
 
-			$scope.comments = [];
+			$scope.getComments();
+
+			$timeout(function(){
+
+				$scope.commentsLoop();
+
+			},500);
+
+		};
+		$scope.getComments = function(){
 
 			ApiModel.query({type: 'events',id: $scope.params.id,extend: 'comments'},function(data){
 
