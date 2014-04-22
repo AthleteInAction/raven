@@ -5,6 +5,15 @@ development:
   encoding: utf8
   username: root
   password: 
+  socket: /tmp/mysql.sock
+
+staging:
+  adapter: mysql2
+  database: raven
+  host: localhost
+  encoding: utf8
+  username: reaper
+  password: 
   socket: /var/run/mysqld/mysqld.sock
 
 production:

@@ -9,7 +9,7 @@ set :branch, "master"
 set :user, 'reaper'
 set :use_sudo, false
 set :deploy_to, "/home/reaper/#{application}"
-set :rails_env, "development"
+set :rails_env, "staging"
 set :deloy_via, :remote_cache
 set :keep_releases, 1
 set :migrate_target, :latest
@@ -35,12 +35,12 @@ after 'deploy:rake_it',"deploy:restart"
 namespace :deploy do
 	task :bundle_it do
 
-		run "cd #{deploy_to}/current && bundle"
+		#run "cd #{deploy_to}/current && bundle"
 
 	end
 	task :rake_it do
 
-		run "cd #{deploy_to}/current && rake db:migrate"
+		#run "cd #{deploy_to}/current && rake db:migrate"
 
 	end
 	task :start do ; end
