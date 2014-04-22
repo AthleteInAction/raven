@@ -1,5 +1,7 @@
 set :application, "raven"
 set :repository,  "git@github.com:onlyexcellence/raven.git"
+set :scm, :git
+set :branch, "master"
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
@@ -7,6 +9,13 @@ set :repository,  "git@github.com:onlyexcellence/raven.git"
 set :user, 'reaper'
 set :use_sudo, false
 set :deploy_to, "/home/reaper/#{application}"
+set :rails_env, "development"
+set :deloy_via, :remote_cache
+set :keep_releases, 1
+set :migrate_target, :latest
+ 
+default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
 
 role :web, "166.78.151.145"                          # Your HTTP server, Apache/etc
 role :app, "166.78.151.145"                          # This may be the same as your `Web` server
