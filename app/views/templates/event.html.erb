@@ -109,7 +109,7 @@
 
 								<div class="comment GREY" ng:repeat="comment in comments">
 									<div class="td top user">
-										<div class="GREEN">{{getUser(comment.user_id).name}}:</div>
+										<div class="GREEN" ng:click="getComments()">{{getUser(comment.user_id).name}}:</div>
 										<div class="time">{{comment.clean_date}}</div>
 									</div>
 									<div class="td top">

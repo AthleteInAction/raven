@@ -133,15 +133,15 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 
 			$scope.getComments();
 
-			$timeout(function(){
+			/*$timeout(function(){
 
 				$scope.commentsLoop();
 
-			},500);
+			},500);*/
 
 		};
 		$scope.getComments = function(){
-
+			
 			ApiModel.query({type: 'events',id: $scope.params.id,extend: 'comments'},function(data){
 
 				$scope.comments = data.comments;
