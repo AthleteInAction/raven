@@ -1,0 +1,82 @@
+<div class="inside">
+
+	<div class="table full">
+
+		<div class="td dashcell half">
+			
+			<div class="section-wrap">
+
+				<ul class="menu">
+					<li class="section">
+						<div class="section-head">
+							<div class="td">Confirmed</div>
+							<div class="td" align="right">
+								<select ng:model="cMonth" ng:options="(x.number+1) as x.long for x in months" ng:change="getConfirmed();">
+									<option value="">All Months</option>
+								</select>
+								<select ng:model="cYear" ng:options="x for x in years" ng:change="getConfirmed();">
+									<option value="">All Years</option>
+								</select>
+								<span class="F11 RED">Past&nbsp;Events:</span>
+								<input type="checkbox" ng:model="cToday" ng:change="getConfirmed();" />
+							</div>
+						</div>
+						<form oncubmit="return false;" ng:submit="saveEvent();">
+						<ul class="expanded">
+							<li ng:repeat="event in confirmed">
+								<a href="/app/#/events/{{event.id}}" class="nav-item">
+									<div class="RED F14" ng:if="!compareDates(event.start_date,today.toLocaleDateString()) && !compareDates(event.end_date,today.toLocaleDateString())">{{event.title}}</div>
+									<div class="GREEN F14" ng:if="compareDates(event.start_date,today.toLocaleDateString()) || compareDates(event.end_date,today.toLocaleDateString())">{{event.title}}</div>
+									<div class="GREY F12">{{event.location}}</div>
+									<div class="GREY F11">{{displayDate(event.start_date).M}}&nbsp;{{displayDate(event.start_date).d}},&nbsp;{{displayDate(event.start_date).y}}&nbsp;to&nbsp;{{displayDate(event.end_date).M}}&nbsp;{{displayDate(event.end_date).d}},&nbsp;{{displayDate(event.end_date).y}}</div>
+								</a>
+							</li>
+						</ul>
+						</form>
+					</li>
+				</ul>
+
+			</div>
+
+		</div>
+		<div class="td dashcell">
+			
+			<div class="section-wrap">
+
+				<ul class="menu">
+					<li class="section">
+						<div class="section-head">
+							<div class="td">Pending</div>
+							<div class="td" align="right">
+								<select ng:model="pMonth" ng:options="(x.number+1) as x.long for x in months" ng:change="getPending();">
+									<option value="">All Months</option>
+								</select>
+								<select ng:model="pYear" ng:options="x for x in years" ng:change="getPending();">
+									<option value="">All Years</option>
+								</select>
+								<span class="F11 RED">Past&nbsp;Events:</span>
+								<input type="checkbox" ng:model="pToday" ng:change="getPending();" />
+							</div>
+						</div>
+						<form oncubmit="return false;" ng:submit="saveEvent();">
+						<ul class="expanded">
+							<li ng:repeat="event in pending">
+								<a href="/app/#/events/{{event.id}}" class="nav-item">
+									<div class="RED F14" ng:if="!compareDates(event.start_date,today.toLocaleDateString()) && !compareDates(event.end_date,today.toLocaleDateString())">{{event.title}}</div>
+									<div class="GREEN F14" ng:if="compareDates(event.start_date,today.toLocaleDateString()) || compareDates(event.end_date,today.toLocaleDateString())">{{event.title}}</div>
+									<div class="GREY F12">{{event.location}}</div>
+									<div class="GREY F11">{{displayDate(event.start_date).M}}&nbsp;{{displayDate(event.start_date).d}},&nbsp;{{displayDate(event.start_date).y}}&nbsp;to&nbsp;{{displayDate(event.end_date).M}}&nbsp;{{displayDate(event.end_date).d}},&nbsp;{{displayDate(event.end_date).y}}</div>
+								</a>
+							</li>
+						</ul>
+						</form>
+					</li>
+				</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

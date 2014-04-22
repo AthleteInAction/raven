@@ -1,0 +1,261 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ *= stub custom_app
+ */
+#map-canvas {
+	height: 350px;
+	width: 450px;
+	border-radius: 5px;
+	background: #838383;
+	font-size: 24px;
+	font-weight: bold;
+	vertical-align: middle;
+	text-align: center;
+	color: #A3A3A3;
+}
+#new-map {
+	margin-top: 7px;
+	margin-left: 2px;
+	height: 250px;
+	display: none;
+	border-radius: 5px;
+	background: #838383;
+}
+.table {
+	display: table;
+}
+.map {
+	width: 1px !important;
+}
+.info {
+	width: auto !important;
+	border-radius: 5px;
+	padding:0 !important;
+}
+ html,body {
+ 	margin:0 0 50px 0;
+ 	padding:0px;
+ 	background:#ececec;
+ }
+ body,input,select,textarea,button {
+ 	font: 13px Helvetica, arial, freesans, clean, sans-serif;
+ 	line-height: 1.4;
+ }
+
+.t12 {
+	margin-top: 12px !important;
+}
+.b2 {
+	margin-bottom: 2px !important;
+}
+.b3 {
+	margin-bottom: 3px !important;
+}
+.b4 {
+	margin-bottom: 4px !important;
+}
+.F14 {
+	font-size: 14px;
+}
+.F12 {
+	font-size: 12px;
+}
+.F11 {
+	font-size: 11px;
+}
+ .CLEAR {
+ 	clear: both;
+ 	height: 0px;
+ 	overflow: hidden;
+ 	padding: 0 !important;
+ 	margin: 0 !important;
+ }
+ .LEFT {
+ 	float: left;
+ }
+ .RIGHT {
+ 	float: right;
+ }
+
+ .container {
+ 	display: block;
+ }
+ .RED {
+ 	color: #ed7b70 !important;
+ }
+ .GREEN {
+ 	color: #4CBC91 !important;
+ }
+ .GREY {
+ 	color: #CCC !important;
+ }
+.full {
+	width:100%;
+}
+ .header {
+ 	font-size: 13px;
+ 	font-weight: bold;
+ 	padding: 15px 0;
+ 	background: #ececec;
+ 	border-bottom: solid 2px #4CBC91;
+ 	text-shadow: 0 1px 0 #fff;
+ }
+ .inside {
+ 	width:980px;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ 	display: block;
+ 	margin-top: 0;
+ 	margin-bottom: 0;
+ 	overflow: hidden;
+ }
+ .logo {
+ 	display: block;
+ 	background: url(<%= asset_path('w_v1.png') %>) left center no-repeat;
+ 	height:43px;
+ 	width:200px;
+ }
+ .head {
+ 	min-width: 980px;
+ 	width: inherit;
+ 	height: 380px;
+ 	background: url(<%= asset_path('head_v1.jpg') %>) center center no-repeat #333;
+ 	/*border-bottom: solid 3px #E44E42;*/
+ }
+ .login {
+ 	float:right;
+ 	margin-top: 5px;
+ }
+ .logged_in {
+ 	margin-top: 12px;
+ 	float:right;
+ }
+ .logged_in a {
+ 	font-size:16px;
+ 	font-weight: bold;
+ 	color: #333333;
+ 	transition: color 0.1s ease-in;
+ 	-webkit-transition: color 0.1s ease-in 0;
+ }
+ .logged_in a:hover {
+ 	color:#4CBC91;
+ }
+ .color-bar {
+ 	background: url(<%= asset_path('color_bar_v1.png') %>) left center repeat-x;
+ 	height:4px;
+ }
+ .stamps {
+ 	min-width: 980px;
+ 	padding:30px 0px;
+ 	height:100px;
+ 	background: url(<%= asset_path('stamps_333.png') %>) center center no-repeat;
+ }
+
+input,textarea {
+	font: 13px Helvetica, arial, freesans, clean, sans-serif;
+}
+input[type="text"],input[type="password"],input[type="number"],textarea {
+	margin:0 2px 0 2px;
+ 	padding: 6px;
+ 	letter-spacing: normal;
+ 	outline: none;
+ 	color: #666;
+ 	background-color: #fff;
+ 	background-repeat: no-repeat;
+ 	background-position: right center;
+ 	border: 1px solid #ccc;
+ 	border-radius: 3px;
+ 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+ 	vertical-align: middle;
+ 	font-size:13px;
+ 	-webkit-box-sizing: border-box; // Safari/Chrome, other WebKit
+ 	-moz-box-sizing: border-box;    // Firefox, other Gecko
+ 	box-sizing: border-box;
+ }
+ input[type="text"]:focus,textarea:focus,input[type="password"]:focus,input[type="number"]:focus {
+ 	box-shadow: inset 0 2px 3px rgba(76,188,145,0.1);
+ 	border-color: #4CBC91;
+ }
+ a {
+ 	text-decoration: none;
+ }
+ 
+ .lrg[type="text"]:focus,.lrg[type="number"]:focus,.lrg[type="password"]:focus,textarea.lrg:focus {
+ 	box-shadow: 0 0 15px rgba(76,188,145,1) !important;
+ }
+ .lrg:first-child {
+ 	margin-top: 0px !important;
+ }
+ .lrg {
+ 	padding: 10px !important;
+ 	font-size: 16px !important;
+ 	-webkit-box-sizing: border-box; // Safari/Chrome, other WebKit
+ 	-moz-box-sizing: border-box;    // Firefox, other Gecko
+ 	box-sizing: border-box;
+ }
+ textarea {
+ 	height:100px !important;
+ }
+ textarea.lrg {
+ 	font-size: 14px !important;
+ }
+ .lrg.cramp {
+ 	float: left !important;
+ 	width:auto !important;
+ 	margin:7px 7px 0 0 !important;
+ }
+ .lrg.cramp:last-child {
+ 	margin-right: 0 !important;
+ }
+ .btn.lrg {
+ 	padding:8px 10px !important;
+ 	background-color: #47ab85;
+ 	background-image: -moz-linear-gradient(#52cc9d, #47ab85);
+ 	background-image: -webkit-linear-gradient(#52cc9d, #47ab85);
+ 	background-image: linear-gradient(#52cc9d, #47ab85);
+ 	border-color: #61e2b0;
+ 	color: #fff;
+ 	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+ 	box-shadow: 0 0 15px rgba(76,188,145,1) !important;
+ }
+ .btn.lrg:hover {
+ 	background-color: #60ddad;
+ 	background-image: -moz-linear-gradient(#72f3c2, #60ddad);
+ 	background-image: -webkit-linear-gradient(#72f3c2, #60ddad);
+ 	background-image: linear-gradient(#72f3c2, #60ddad);
+ }
+
+ h2 {
+ 	margin: 0 0 0 0;
+ 	color: #CCC;
+ 	font-weight: bold;
+ 	font-size: 18px;
+ 	line-height: 1em;
+ 	text-shadow: 0 1px 0 rgba(50,50,50,0.7);
+ }
+ .pointer {
+ 	cursor: pointer;
+ }
+ .fade {
+ 	opacity: 0.5;
+ }
+ .h3 {
+ 	color: #CCC;
+ 	font-weight: normal;
+ 	font-size: 20px;
+ }
+ .h4 {
+ 	color: #4CBC91;
+ 	font-weight: normal;
+ 	font-size: 12px;
+ }

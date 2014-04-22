@@ -1,0 +1,101 @@
+.section_pad {
+	margin-top:12px;	
+}
+.split {
+	display: table;
+	width: 100%;
+	padding:0;
+	border-bottom: 1px solid #505050;
+	border-top: 1px solid #777;
+	font-size:14px;
+	color: #CCC;
+	-webkit-box-sizing: border-box; // Safari/Chrome, other WebKit
+	-moz-box-sizing: border-box;    // Firefox, other Gecko
+	box-sizing: border-box;
+}
+.v7 {
+	padding-top: 7px !important;
+	padding-bottom: 7px !important;
+}
+.t7 {
+	margin-top: 7px !important;
+}
+.split:first-child {
+	border-top: none !important;
+}
+.split:last-child {
+	border-bottom: none !important;
+	padding-bottom: 0 !important;
+}
+.split .lrg,.split .btn_red {
+	margin-top: 0 !important;
+}
+
+a {
+	color: #ed7b70;
+}
+a:hover {
+	color:#ea6a5e;
+	text-decoration: underline;
+}
+
+.split .mid-item,.split .top-item {
+	display: table-cell;
+	vertical-align: middle;
+	width:1px;
+	padding: 0 7px;
+}
+.split .top-item,.split .top-item-even {
+	vertical-align: top !important;
+}
+.split .mid-item div,.split .mid-item-even div {
+	color:#4CBC91;
+	font-size:12px;
+}
+.split .mid-item-even,.split .top-item-even {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 0 7px;
+}
+.split .mid-item:nth-last-child(2) {
+	width:auto;
+}
+.split .mid-item:first-child,.split .mid-item-even:first-child,.split .top-item:first-child,.split .top-item-even:first-child {
+	padding-left: 0;
+}
+.split .mid-item:last-child,.split .mid-item-even:last-child,.split .top-item:last-child,.split .top-item-even:last-child {
+	padding-right: 0;
+}
+.table {
+	display: table;
+}
+.no-pad-right {
+	padding-right: 0 !important;
+}
+.no-pad-left {
+	padding-left: 0 !important;
+}
+.total_cost {
+	margin-top: 7px;
+}
+.form_error {
+	display: block;
+	background: #FC0;
+	height: 15px;
+	position: absolute;
+	border-radius: 2px;
+}
+.dashcell {
+	padding-right: 4px !important;
+	padding-left: 4px !important;
+}
+.dashcell:first-child {
+	padding-left: 0 !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+.dashcell:last-child {
+	padding-right: 0 !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}

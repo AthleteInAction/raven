@@ -1,0 +1,123 @@
+<div class="inside">
+
+	<div class="section-wrap">
+
+		<ul class="menu">
+			<li class="section">
+				<div class="section-head">
+					<div class="td">Create Event</div>
+				</div>
+				<form onsubmit="return false;" ng:submit="createEvent();">
+				<ul class="expanded">
+					<li>
+						<div class="blank">
+							<div class="b4" ng:show="showMap"><h2>Title:</h2></div>
+							<input type="text" class="lrg full" ng:model="newEvent.title" placeholder="*Required" />
+							<div class="t12 b4"><h2>Location:</h2></div>
+							<input type="text" id="loc_input" class="lrg full" ng:model="newEvent.location" onstop="geocode();" delay="1000" placeholder="*Required" />
+							<div id="new-map">{{geoLocation}}</div>
+							<div class="t12 b4"><h2>Details:</h2></div>
+							<textarea class="lrg full" ng:model="newEvent.description"></textarea>
+							<div class="t12 b4"><h2>Dates:</h2></div>
+							<div class="table full">
+
+								<div class="td mid min nopad">
+									<input type="text" class="lrg pointer" ng:model="newEvent.start_date" placeholder="Start Date" datepicker ng:change="getDays(); getTotal();" readonly="readonly" />
+								</div>
+								<div class="td mid min nopad">
+									<input type="text" class="lrg pointer" ng:model="newEvent.end_date" placeholder="End Date" datepicker ng:change="getDays(); getTotal();" readonly="readonly" />
+								</div>
+								<div class="td mid nopad" align="right">
+									<h2>{{newEvent.nights}}&nbsp;nights,&nbsp;{{newEvent.days}}&nbsp;days</h2>
+								</div>
+
+							</div>
+							<!--<div class="split v7">
+
+								<div class="mid-item">
+									<input type="text" class="lrg pointer" ng:model="newEvent.start_date" placeholder="Start Date" datepicker ng:change="getDays(); getTotal();" readonly="readonly" />
+								</div>
+								<div class="mid-item">
+									<input type="text" class="lrg pointer" ng:model="newEvent.end_date" placeholder="End Date" datepicker ng:change="getDays(); getTotal();" readonly="readonly" />
+								</div>
+								<div class="mid-item" align="right">
+									<h2>{{newEvent.nights}}&nbsp;nights,&nbsp;{{newEvent.days}}&nbsp;days</h2>
+								</div>
+
+							</div>-->
+						</div>
+					</li>
+					<li>
+						<div class="blank">
+							<div>
+								<div class="split">
+									<div class="mid-item-even">
+										<h2>Expenses</h2>
+										<div>Add optional expenses to charge invitees</div>
+									</div>
+									<div class="mid-item-even" align="right">
+										<button class="btn" ng:click="addExpense();" onclick="return false;">Add Expense</button>
+									</div>
+								</div>
+							</div>
+							<div>
+								<div class="split v7" ng:repeat="expense in newEvent.expenses">
+									<div class="mid-item GREEN no-pad-right" align="left">$</div>
+									<div class="mid-item no-pad-right" align="left"><input type="text" class="lrg" size="5" placeholder="Cost" ng:model="newEvent.expenses[$index].price" ng:change="getTotal();" /></div>
+									<div class="mid-item" align="left">
+										<select class="lrg cramp" ng:model="newEvent.expenses[$index].frequency" ng:change="getTotal();">
+											<option value="per_day">Per Day</option>
+											<option value="per_night">Per Night</option>
+											<option value="one_time">One Time</option>
+										</select>
+									</div>
+									<div class="mid-item" align="left">
+										<input type="text" class="lrg full" placeholder="Description" ng:model="newEvent.expenses[$index].description" />
+									</div>
+									<div class="mid-item" align="right">
+										<a href="" ng:click="removeExpense($index);">Remove</a>
+									</div>
+								</div>
+							</div>
+							<div class="total_cost" ng:show="newEvent.totalCost > 0">
+								<h2>Total&nbsp;Cost:&nbsp;<span class="RED">${{newEvent.totalCost}}</span>&nbsp;/&nbsp;person</h2>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="blank">
+							<div>
+								<div class="split">
+									<div class="mid-item-even">
+										<h2>Invite People</h2>
+										<div>Invite people to attend your event</div>
+									</div>
+								</div>
+							</div>
+							<div ng:show="invalidEmail" class="RED">*{{invalidEmail}}</div>
+							<input type="text" class="lrg full t7" placeholder="Email" id="invite_input" ng:model="newInvitee" onenter="addInvitee();" ng:change="invitee = null;" onclick="this.select();" />
+							<div>
+								<div class="split v7" ng:repeat="person in newEvent.invitees">
+									<div class="mid-item" align="left">
+										<span ng:show="person.name"><b>{{person.name}}</b></br></span>
+										{{person.email}}
+									</div>
+									<div class="mid-item" align="left"><a href="" ng:click="removeInvitee($index);">Remove</a></div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="blank">
+							<input type="submit" class="btn_green lrg full" value="Submit" ng:show="!submitting" />
+							<input type="submit" class="btn_green lrg full fade" value="Loading..." ng:show="submitting" disabled="disabled" />
+						</div>
+					</li>
+				</ul>
+				</form>
+			</li>
+		</ul>
+
+	</div>
+
+</div>

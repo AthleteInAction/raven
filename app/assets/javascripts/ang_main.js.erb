@@ -1,0 +1,258 @@
+var RavenNG;
+RavenNG = angular.module('RavenNG',['ngResource','ui']);
+RavenNG.value('$anchorScroll',angular.noop);
+RavenNG.config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
+	
+	html5Mode: true;
+
+	$routeProvider.when('/events/new',{
+		templateUrl : '/angularjs/templates/new_event.html',
+		controller: NewCtrl
+	}).when('/events/:id',{
+		templateUrl : '/angularjs/templates/event.html',
+		controller: EventCtrl
+	}).when('/events/:id/edit',{
+		templateUrl : '/angularjs/templates/event_edit.html',
+		controller: EditCtrl
+	}).when('/account',{
+		templateUrl : '/angularjs/templates/account.html',
+		controller: UserCtrl
+	}).when('/dashboard',{
+		templateUrl : '/angularjs/templates/dashboard.html',
+		controller: DashboardCtrl
+	});/*.otherwise({
+		redirectTo: '/dashboard'
+	});*/
+	
+}]);
+
+
+// Events Model
+// -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:
+// -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:
+RavenNG.factory('ApiModel',[
+	'$resource',function($resource){
+		return $resource("/api/v1/:type/:id/:extend.json",
+			{
+				id: '@id',
+				extend: '@extend'
+			},
+			{
+				get: {method: 'GET'},
+				query: {method: 'GET'},
+				create: {method: 'POST'},
+				save: {method: 'PUT'},
+			}
+		);
+	}
+]);
+RavenNG.config(['$httpProvider',function($httpProvider){
+		$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+	}
+]);
+// -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:
+// -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:
+
+
+// jQuery Datepicker
+// -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:
+// -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:
+RavenNG.directive('datepicker',function(){
+	return {
+		restrict: "A",
+		require: "ngModel",
+		link: function(scope,elem,attrs,ngModelCtrl){
+			var updateModel = function(dateText){
+				scope.$apply(function(){
+					ngModelCtrl.$setViewValue(dateText);
+				});
+			};
+			var options = {
+				dateFormat: 'yy-mm-dd',
+				onSelect: function (dateText) {
+					updateModel(dateText);
+				}
+			};
+			elem.datepicker(options);
+		}
+	}
+});
+RavenNG.directive('shiftsubmit',function(){
+	return {
+
+		link: function(scope,element){
+
+			$(element).keyup(function(e){
+
+				if (e.keyCode == 13 && e.shiftKey){
+					$(element).submit();
+				}
+
+			});
+
+		}
+
+	}
+});
+RavenNG.directive('onenter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.onenter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+RavenNG.directive('notblank',function(){
+    return function(scope,element,attrs){
+
+    	var item = {};
+    	$.grep(attrs.ngModel.split('.'),function(val){
+
+    		
+
+    	});
+
+    };
+});
+RavenNG.directive('onstop',function(){
+    return function (scope, element, attrs) {
+        element.bind('keyup', function (event) {
+
+        	if (attrs.delay){
+        		this.delay = attrs.delay;
+        	} else {
+        		this.delay = 1000;
+        	}
+
+        	if (this.timer){clearTimeout(this.timer);}
+        	
+        	this.timer = setTimeout(function(){scope.$eval(attrs.onstop);},this.delay);
+
+        });
+    };
+});
+/*
+$(element).before('<span class="form_error"></div>');
+$(element).keyup(function(){
+	$(this).prev('.form_error')
+		.css('left',element.context.offsetLeft)
+		.css('top',(element.context.offsetTop-$(this).prev('.form_error').height()))
+		.css('width',element.context.offsetWidth)
+		.html(scope.newEvent.title);
+});
+*/
+// -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:
+// -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:
+
+function JP(data){
+
+	console.log(data);
+
+}
+function dateDiff(a,b){
+
+	var start = moment(b);
+	var end = moment(a);
+	
+	return (start.diff(end,'days')+1);
+
+}
+
+var emailValidate = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+var months = [
+	{
+		number: 0,
+		short: 'Jan',
+		long: 'January'
+	},
+	{
+		number: 1,
+		short: 'Feb',
+		long: 'Febuary'
+	},
+	{
+		number: 2,
+		short: 'Mar',
+		long: 'March'
+	},
+	{
+		number: 3,
+		short: 'Apr',
+		long: 'April'
+	},
+	{
+		number: 4,
+		short: 'May',
+		long: 'May'
+	},
+	{
+		number: 5,
+		short: 'Jun',
+		long: 'June'
+	},
+	{
+		number: 6,
+		short: 'Jul',
+		long: 'July'
+	},
+	{
+		number: 7,
+		short: 'Aug',
+		long: 'August'
+	},
+	{
+		number: 8,
+		short: 'Sept',
+		long: 'September'
+	},
+	{
+		number: 9,
+		short: 'Oct',
+		long: 'October'
+	},
+	{
+		number: 10,
+		short: 'Nov',
+		long: 'November'
+	},
+	{
+		number: 11,
+		short: 'Dec',
+		long: 'December'
+	}
+];
+var days = [
+	{
+		short: 'Sun',
+		long: 'Sunday'
+	},
+	{
+		short: 'Mon',
+		long: 'Monday'
+	},
+	{
+		short: 'Tues',
+		long: 'Tuesday'
+	},
+	{
+		short: 'Wed',
+		long: 'Wednesday'
+	},
+	{
+		short: 'Thurs',
+		long: 'Thursday'
+	},
+	{
+		short: 'Fri',
+		long: 'Friday'
+	},
+	{
+		short: 'Sat',
+		long: 'Saturday'
+	}
+];

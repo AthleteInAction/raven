@@ -1,0 +1,50 @@
+<div class="inside">
+
+	<div class="section-wrap">
+
+		<ul class="menu">
+			<li class="section">
+				<div class="section-head">
+					<div class="td">Edit Event</div>
+					<div class="td" align="right"><a href="/app/#/events/{{params.id}}">View&nbsp;Event</a></div>
+				</div>
+				<form oncubmit="return false;" ng:submit="saveEvent();">
+				<ul class="expanded">
+					<li>
+						<div class="blank">
+							<div class="b4"><h2>Title:</h2></div>
+							<input type="text" class="lrg full" ng:model="event.title" />
+							<div class="t12 b4"><h2>Location:</h2></div>
+							<input type="text" class="lrg full" ng:model="event.location" />
+							<div class="t12 b4"><h2>Details:</h2></div>
+							<textarea class="lrg full" ng:model="event.description"></textarea>
+							<div class="t12 b4"><h2>Dates:</h2></div>
+							<div class="table full">
+
+								<div class="td mid min nopad">
+									<input type="text" class="lrg pointer" ng:model="event.start_date" placeholder="Start Date" datepicker ng:change="getDays(); getTotal();" readonly="readonly" />
+								</div>
+								<div class="td mid min nopad">
+									<input type="text" class="lrg pointer" ng:model="event.end_date" placeholder="End Date" datepicker ng:change="getDays(); getTotal();" readonly="readonly" />
+								</div>
+								<div class="td mid nopad" align="right">
+									<h2>{{event.nights}}&nbsp;nights,&nbsp;{{event.days}}&nbsp;days</h2>
+								</div>
+
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="blank">
+							<input type="submit" class="btn_green lrg full" value="Save" ng:show="!submitting" />
+							<input type="submit" class="btn_green lrg full fade" value="Saving..." ng:show="submitting" disabled="disabled" />
+						</div>
+					</li>
+				</ul>
+				</form>
+			</li>
+		</ul>
+
+	</div>
+
+</div>

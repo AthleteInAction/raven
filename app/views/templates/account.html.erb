@@ -1,0 +1,33 @@
+<div class="inside">
+
+	<div class="section-wrap">
+
+		<ul class="menu">
+			<li class="section">
+				<div class="section-head">
+					<div class="td">My&nbsp;Account</div>
+				</div>
+				<form onsubmit="return false;" ng:submit="saveUser();">
+				<ul class="expanded">
+					<li>
+						<div class="blank">
+							<div class="b4"><h2>Name:</h2></div>
+							<input type="text" class="lrg full" ng:model="user.name" />
+							<div class="t12 b4"><h2>Email:</h2></div>
+							<input type="text" class="lrg full" ng:model="user.email" />
+						</div>
+					</li>
+					<li>
+						<div class="blank">
+							<input type="submit" class="btn_green lrg full" value="Save" ng:show="!submitting" />
+							<input type="submit" class="btn_green lrg full fade" value="Saving..." ng:show="submitting" disabled="disabled" />
+						</div>
+					</li>
+				</ul>
+				</form>
+			</li>
+		</ul>
+
+	</div>
+
+</div>

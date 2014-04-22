@@ -1,0 +1,15 @@
+<%= form_for @event do |f| %>
+	<div class="field">
+	  <%= f.label :title %><br />
+	  <%= f.text_field :title %>
+	</div>
+
+	<div class="field">
+	  <%= f.label :location %><br />
+	  <%= f.text_field :location %>
+	</div>
+
+	<div class="actions">
+	  <%= f.submit %>
+	</div>
+<% end %>

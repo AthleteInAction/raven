@@ -1,0 +1,50 @@
+<% #SecureRandom.hex %>
+<div ng:controller="DashboardCtrl">
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td width="150" align="left" valign="top">
+
+				<div ng:repeat="event in events.events">
+
+					<a href="/#/dashboard/events/{{event.id}}" class="events_block">
+						<div class="title">{{event.title}}</div>
+						Event ID:&nbsp;{{event.id}}</br>
+						Role:&nbsp;{{event.role}}</br>
+						People:&nbsp;{{event.accepted}}/{{event.invited}}</br>
+						From:&nbsp;{{event.start_date}}</br>
+						To:&nbsp;{{event.end_date}}
+					</a>
+					<a href="" class="accept_event" ng:click="acceptEvent(event.invitation_id);" ng:show="event.event_role == 'invitee' && event.accepted != 1;">ACCEPT</a>
+
+				</div>
+
+			</td>
+			<td align="center" valign="top">
+
+				<form id="new_event_form" ng:submit="createEvent();">
+				<table>
+					<tr>
+						<td><input type="text" ng:model="newEvent.title" placeholder="Title" /></td>
+						<td><input type="text" ng:model="newEvent.location" placeholder="Location" /></td>
+						<td>
+							<input type="text" ng:model="newEvent.start_date" placeholder="From" datepicker />
+						</td>
+						<td>
+							<input type="text" ng:model="newEvent.end_date" placeholder="To" datepicker />
+						</td>
+					</tr>
+				</table>
+				<div><textarea ng:model="newEvent.description" shiftsubmit></textarea></div>
+				<div><input type="submit" value="Create" /></div>
+				</form>
+
+				<div style="border-top:solid 2px #FC0; height:2px;"></div>
+
+				<div ng:view></div>
+
+			</td>
+		</tr>
+	</table>
+
+</div>
