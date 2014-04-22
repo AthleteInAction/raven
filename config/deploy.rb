@@ -5,6 +5,7 @@ set :repository,  "git@github.com:onlyexcellence/raven.git"
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 set :user, 'reaper'
+ste :use_sudo, false
 set :deploy_to, "/home/reaper/#{application}"
 
 role :web, "166.78.151.145"                          # Your HTTP server, Apache/etc
