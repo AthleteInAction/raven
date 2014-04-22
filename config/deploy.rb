@@ -22,7 +22,7 @@ role :web, "166.78.151.145" # Your HTTP server, Apache/etc
 role :app, "166.78.151.145" # This may be the same as your `Web` server
 role :db, "166.78.151.145", :primary => true # This is where Rails migrations will run
 
-after "deploy", "deploy:migrate"
+#after "deploy", "deploy:migrate"
  
  namespace :deploy do
    task :start do ; end

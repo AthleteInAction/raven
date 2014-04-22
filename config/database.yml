@@ -12,6 +12,6 @@ production:
   database: raven
   host: localhost
   encoding: utf8
-  username: root
+  username: reaper
   password: 
   socket: /var/run/mysqld/mysqld.sock
