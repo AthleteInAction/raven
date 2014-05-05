@@ -1,0 +1,31 @@
+.cwrap {
+	width: 980px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.wrap {
+	background: #505050;
+	border-radius: 2px;
+	padding: 3px;
+}
+
+.wrap .seal {
+	border: solid 1px #3f3f3f;
+}
+
+.wrap .seal .title {
+	background-color: #434343;
+	background-image: -moz-linear-gradient(#4b4b4b, #434343);
+	background-image: -webkit-linear-gradient(#4b4b4b, #434343);
+	background-image: linear-gradient(#4b4b4b, #434343);
+	background-repeat: repeat-x;
+	display: table;
+	width: 100%;
+	padding: 10px;
+	color: #CCC;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 20px;
+	text-shadow: 0 1px 0 rgba(50,50,50,0.7);
+	border-left: 0 none;
+}
