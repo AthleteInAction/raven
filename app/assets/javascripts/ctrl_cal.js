@@ -75,7 +75,7 @@ var CalCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeout
 				if (this.date == $scope.today.getDate()){
 					this.result = {
 						date: this.date,
-						type: 'today'
+						type: 'in'
 					};					
 				}
 			}

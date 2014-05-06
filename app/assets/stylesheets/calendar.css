@@ -37,6 +37,8 @@
 
 #calendar .shell .event {
 	position: absolute;
-	background: #090;
+	background: #4CBC91;
+	color: #4b4b4b;
+	text-align: left;
 	border-radius: 3px;
 }
