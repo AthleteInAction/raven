@@ -21,7 +21,8 @@ RavenNG.config(['$routeProvider','$locationProvider',function($routeProvider,$lo
 		templateUrl : '/angularjs/templates/dashboard.html',
 		controller: DashboardCtrl
 	}).when('/test',{
-		templateUrl : '/angularjs/templates/test.html'
+		templateUrl : '/angularjs/templates/test.html',
+		controller: CalCtrl
 	});/*.otherwise({
 		redirectTo: '/dashboard'
 	});*/
@@ -138,16 +139,6 @@ RavenNG.directive('onstop',function(){
         });
     };
 });
-/*
-$(element).before('<span class="form_error"></div>');
-$(element).keyup(function(){
-	$(this).prev('.form_error')
-		.css('left',element.context.offsetLeft)
-		.css('top',(element.context.offsetTop-$(this).prev('.form_error').height()))
-		.css('width',element.context.offsetWidth)
-		.html(scope.newEvent.title);
-});
-*/
 // -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:
 // -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:
 

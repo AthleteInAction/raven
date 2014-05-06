@@ -1,0 +1,42 @@
+#calendar {
+	position: relative;
+	display: table;
+	background: #FC0;
+}
+#calendar .heart {
+	background: #636363;
+	border-spacing: 1px;
+	border-collapse: separate;
+}
+#calendar .heart tr td {
+	background: #474747;
+}
+#calendar .heart tr td.indate {
+	color: #888;
+	font-weight: bold;
+	background: #4e4e4e;
+}
+#calendar .heart tr td.outdate {
+	color: #5e5e5e;
+	font-weight: bold;
+}
+#calendar .heart tr td.todaydate {
+	color: #ed7b70;
+	font-weight: bold;
+	background: #686868;
+}
+#calendar .heart tr td div {
+	margin: 1px 3px 0 0;
+}
+
+#calendar .shell {
+	background: #FC0;
+	position: absolute;
+	z-index: 10000000;
+}
+
+#calendar .shell .event {
+	position: absolute;
+	background: #090;
+	border-radius: 3px;
+}
