@@ -48,6 +48,16 @@ var CalCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeout
 			'Sat'
 		];
 
+		$scope.data = {
+			1: [
+				{
+					title: 'This is a test!',
+					colspan: 3,
+					startDay: 2
+				}
+			]
+		};
+
 		$scope.events = {};
 		$scope.events[1] = {
 			title: 'This is an event!'
@@ -98,22 +108,7 @@ var CalCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeout
 
 				angular.forEach(data.events,function(val){
 
-					var sdt = new Date(val.start_date);
-					var edt = new Date(val.end_date);
-
-					var top = Math.ceil((sdt.getUTCDate()+$scope.startDay)/7);
-					top = ((top*$scope.cellheight)-$scope.cellheight)+(top+20);
-					val.setTop = top;
-
-					var d = sdt.getUTCDay();
-					var left = (d*$scope.cellwidth)+(d+5);
-					val.setLeft = left;
-
-					var dif = (edt.getUTCDate()-sdt.getUTCDate());
-					var width = (((dif*$scope.cellwidth)+dif)-8)+$scope.cellwidth;
-					val.setWidth = width;
-
-					temp.push(val);
+					
 
 				});
 

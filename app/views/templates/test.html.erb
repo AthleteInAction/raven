@@ -1,6 +1,6 @@
 <div class="inside" align="center">
 
-	<div id="calendar" calendar>
+	<!--<div id="calendar" calendar>
 		<div class="shell">
 			<div class="event" ng:repeat="event in events" style="top:{{event.setTop}}px; left:{{event.setLeft}}px; width:{{event.setWidth}}px;">&nbsp;{{event.title}}</div>
 		</div>
@@ -11,6 +11,41 @@
 				</td>
 			</tr>
 		</table>
+	</div>-->
+
+	<div id="calnew">
+
+		<div class="weekrow" ng:repeat="w in [] | range:6">
+			<table class="datebg">
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+			<table class="eventover">
+				<tr>
+					<td align="right">1</td>
+					<td align="right">2</td>
+					<td align="right">3</td>
+					<td align="right">4</td>
+					<td align="right">5</td>
+					<td align="right">6</td>
+					<td align="right">7</td>
+				</tr>
+				<tr ng:repeat="d in data[1]">
+					<td ng:repeat="n in [] | range:7">
+						
+					</td>
+				</tr>
+			</table>
+
+		</div>
+
 	</div>
 
 </div>
