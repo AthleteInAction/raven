@@ -1,51 +1,50 @@
-<div class="inside" align="center">
+<!--<div class="inside">
 
-	<!--<div id="calendar" calendar>
-		<div class="shell">
-			<div class="event" ng:repeat="event in events" style="top:{{event.setTop}}px; left:{{event.setLeft}}px; width:{{event.setWidth}}px;">&nbsp;{{event.title}}</div>
-		</div>
-		<table class="heart" cellpadding="0" cellspacing="0">
-			<tr ng:repeat="week in w">
-				<td ng:repeat="day in d" height="{{cellheight}}" width="{{cellwidth}}" valign="top" align="right" class="{{setDate(week,day).type}}date">
-					<div>{{setDate(week,day).date}}</div>
-				</td>
-			</tr>
-		</table>
-	</div>-->
+	<div class="section-wrap">
 
-	<div id="calnew">
-
-		<div class="weekrow" ng:repeat="w in [] | range:6">
-			<table class="datebg">
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</table>
-			<table class="eventover">
-				<tr>
-					<td align="right">1</td>
-					<td align="right">2</td>
-					<td align="right">3</td>
-					<td align="right">4</td>
-					<td align="right">5</td>
-					<td align="right">6</td>
-					<td align="right">7</td>
-				</tr>
-				<tr ng:repeat="d in data[1]">
-					<td ng:repeat="n in [] | range:7">
-						
-					</td>
-				</tr>
-			</table>
-
-		</div>
+		<ul class="menu">
+			<li class="section" ng:repeat="i in [] | range:12">
+				<div class="section-head">
+					<div class="td" id="month_{{(i+1)}}">{{months[i].long}}</div>
+				</div>
+				<ul class="expanded">
+					<li>
+						<a href="" class="nav-item title">
+							HELLO
+						</a>
+					</li>
+					<li>
+						<a href="" class="nav-item">
+							HELLO
+						</a>
+					</li>
+					<li>
+						<a href="" class="nav-item">
+							HELLO
+						</a>
+					</li>
+					<li>
+						<a href="" class="nav-item title">
+							HELLO
+						</a>
+					</li>
+					<li>
+						<a href="" class="nav-item">
+							HELLO
+						</a>
+					</li>
+					<li>
+						<a href="" class="nav-item">
+							HELLO
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
 
 	</div>
 
-</div>
+</div>-->
+<ul class="tcontent">
+	<li ng:repeat="i in [] | range:12">{{months[i].long}}</li>
+</ul>

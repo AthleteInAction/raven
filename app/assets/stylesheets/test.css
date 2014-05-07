@@ -1,0 +1,26 @@
+ul.tcontent {
+	list-style: none;
+	margin:0;
+	padding:0;
+	width: 100%;
+	height: 100%;
+}
+ul.tcontent li {
+	display: block;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background: #4e4e4e;
+}
+ul.tcontent li:nth-child(even){
+	background: red;
+}
+section {
+	width: 100%;
+	height: 100%;
+	background: red;
+}
+section:nth-child(even){
+	background: grey;
+}
