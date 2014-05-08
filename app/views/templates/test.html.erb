@@ -45,6 +45,31 @@
 	</div>
 
 </div>-->
-<ul class="tcontent">
-	<li ng:repeat="i in [] | range:12">{{months[i].long}}</li>
-</ul>
+
+<div class="left_side">
+
+	<div class="section-wrap">
+
+		<ul class="menu">
+			<li class="section" ng:repeat="i in [] | range:12">
+				<div class="section-head {{mtab[i]}}">
+					<a href="/app/#/test?month={{(i+1)}}" class="mini_td" id="month_{{i}}">{{months[i].long}}</a>
+				</div>
+				<ul class="expanded">
+					<li>
+						<a href="" class="nav-item title">
+							HELLO
+						</a>
+					</li>
+					<li>
+						<a href="" class="nav-item">
+							HELLO
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+
+</div>
