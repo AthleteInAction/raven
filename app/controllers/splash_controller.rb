@@ -5,7 +5,7 @@ class SplashController < ApplicationController
 		@user = User.new
 
 		if current_user
-			redirect_to '/app/#/dashboard'
+			redirect_to '/app/#/calendar'
 		else
 			
 		end

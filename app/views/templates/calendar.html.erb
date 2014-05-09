@@ -80,8 +80,27 @@
 
 		<div id="right_wrap">
 
+			<div id="calhead">
+
+				<div class="td" align="left">
+					<span class="month">{{months[infra.month].long}}</span>
+				</div>
+
+			</div>
+
 			<div id="calendar">
 
+				<div class="labels">
+
+					<table>
+						<tr>
+							<td valign="middle" ng:repeat="day in days">
+								<div class="show_day">{{day.long}}</div>
+							</td>
+						</tr>
+					</table>
+
+				</div>
 				<div class="week" ng:repeat="week in weeks">
 
 					<table class="backbone">

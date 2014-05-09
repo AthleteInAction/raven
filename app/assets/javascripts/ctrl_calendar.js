@@ -1,4 +1,4 @@
-var CalCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeout','$location','$anchorScroll',
+var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeout','$location','$anchorScroll',
 	function($scope,$routeParams,$location,$route,ApiModel,$timeout,$location,$anchorScroll){
 
 		$scope.params = $routeParams;
@@ -7,6 +7,7 @@ var CalCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeout
 		$scope.infra.today = new Date();
 		$scope.mtab = {};
 		$scope.months = months;
+		$scope.days = days;
 
 		// Set Year & Month
 		/////////////////////////////////////////////////////////////////////////////////
