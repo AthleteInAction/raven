@@ -186,10 +186,12 @@ var CalCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeout
 							}
 						}
 
+						$.each(event,function(x,y){
+
+							newEvent[x] = y;
+
+						});
 						
-						newEvent.start_date = event.start_date;
-						newEvent.end_date = event.end_date;
-						newEvent.title = event.title;
 						newEvent.week = week;
 						newEvent.span = span;
 
