@@ -26,7 +26,6 @@ section:nth-child(even){
 }
 
 .left_side {
-	width: 250px;
 	background: #505050;
 	padding: 0 3px 0 0;
 	min-height: 100%;
@@ -65,4 +64,36 @@ section:nth-child(even){
 }
 .left_side .menu .section:last-child {
 	border-bottom: none !important;
+}
+.left_side .section-wrap .nav-item .maintext {
+	font-size: 14px;
+	color:#424242;
+}
+.left_side .section-wrap .nav-item .subtext {
+	font-size: 12px;
+	color:#969696;
+}
+
+
+div.dash_wrap {
+	width: 100%;
+	display: table;
+}
+div.dash_wrap div.dash_cell {
+	display: table-cell;
+	vertical-align: top;
+}
+div.dash_wrap div.dash_cell:first-child {
+	width: 250px;
+}
+div.dash_wrap div.dash_cell:last-child {
+
+}
+
+#right_wrap {
+	position: fixed;
+	text-align: center;
+	left: 250px;
+	right: 0;
+	padding: 20px;
 }
