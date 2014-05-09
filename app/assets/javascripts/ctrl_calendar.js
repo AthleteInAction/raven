@@ -50,12 +50,12 @@ var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$ti
 				
 				if (key > 0){
 					
-					var aStart = new Date(val.start_date+' 00:00:00');
-					var aEnd = new Date(val.end_date+' 00:00:00');
+					var aStart = new Date(Date.parse(val.start_date));
+					var aEnd = new Date(Date.parse(val.end_date));
 					var lap = false;
 
-					var bStart = new Date(lastEvent.start_date+' 00:00:00');
-					var bEnd = new Date(lastEvent.end_date+' 00:00:00');
+					var bStart = new Date(Date.parse(lastEvent.start_date));
+					var bEnd = new Date(Date.parse(lastEvent.end_date));
 
 					if (aStart <= bEnd && bStart <= aEnd){
 						// Does Overlap
@@ -102,8 +102,8 @@ var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$ti
 
 				$.each($scope.events,function(i,e){
 
-					var aStart = new Date(e.start_date+' 00:00:00');
-					var aEnd = new Date(e.end_date+' 00:00:00');
+					var aStart = new Date(Date.parse(e.start_date));
+					var aEnd = new Date(Date.parse(e.end_date));
 
 					var bStart = new Date(val.days[0].stamp);
 					var bEnd = new Date(val.days[6].stamp);
@@ -145,8 +145,8 @@ var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$ti
 
 						var newEvent = {};
 
-						var start_date = new Date(event.start_date+' 00:00:00');
-						var end_date = new Date(event.end_date+' 00:00:00');
+						var start_date = new Date(Date.parse(event.start_date));
+						var end_date = new Date(Date.parse(event.end_date));
 
 						var s1 = start_date;
 						var e1 = end_date;
@@ -230,8 +230,8 @@ var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$ti
 
 				$.each(data.events,function(key,val){
 
-					var aStart = new Date(val.start_date+' 00:00:00');
-					var aEnd = new Date(val.end_date+' 00:00:00');
+					var aStart = new Date(Date.parse(val.start_date));
+					var aEnd = new Date(Date.parse(val.end_date));
 
 					if (aStart.getUTCMonth() == aEnd.getUTCMonth()){
 						tmp[aStart.getUTCMonth()].push(val);
@@ -314,7 +314,7 @@ var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$ti
 		////////////////////////////////////////////////////////////////////////////////
 		$scope.displayDate = function(date){
 
-			var a = new Date(date+' 00:00:00');
+			var a = new Date(Date.parse(date));
 			var n = a;
 
 			var newdate = {

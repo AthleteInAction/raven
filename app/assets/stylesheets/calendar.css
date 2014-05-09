@@ -2,6 +2,7 @@
 	background: #505050;
 	padding: 3px;	
 	border-radius: 3px;
+	margin-top: 30px;
 }
 #calendar div.week {
 	height:88px;
@@ -70,33 +71,35 @@
 	width: 100%;
 	table-layout: fixed;
 }
-#calendar table.overlay tr td div.span {
+#calendar table.overlay tr td a.span {
+	text-decoration: none;
+	display: block;
 	font-size:11px;
 	color: #575757;
 	text-align: left;
 	padding: 0 4px;
 	text-shadow: 0 1px 0 #76CEB2;
 }
-#calendar table.overlay tr td div.span.highlight {
+#calendar table.overlay tr td a.span.highlight {
 	background: #61E4B1 !important;
 	text-shadow: 0 1px 0 #B3EEDB !important;
 }
-#calendar table.overlay tr td div.span.spancenter {
+#calendar table.overlay tr td a.span.spancenter {
 	background: #4CBC91;
 	border-radius: 3px;
 	margin: 0 2px 0 2px;
 }
-#calendar table.overlay tr td div.span.spanleft {
+#calendar table.overlay tr td a.span.spanleft {
 	background: #4CBC91;
 	border-radius: 0 3px 3px 0;
 	margin: 0 2px 0 0px;
 }
-#calendar table.overlay tr td div.span.spanright {
+#calendar table.overlay tr td a.span.spanright {
 	background: #4CBC91;
 	border-radius: 3px 0px 0px 3px;
 	margin: 0 0px 0 2px;
 }
-#calendar table.overlay tr td div.span.spanboth {
+#calendar table.overlay tr td a.span.spanboth {
 	background: #4CBC91;
 	border-radius: 0px 0px 0px 0px;
 	margin: 0 0px 0 0px;
@@ -116,14 +119,29 @@
 #calendar table.backbone tr td.outdate div.show_date {
 	color:#7e7e7e;
 }
-#calhead {
-	display: table;
+#calendar div.calhead {
+	height: 50px;
+	position: relative;
+	margin-bottom: 2px;
+}
+#calendar div.calhead table {
+	position: absolute;
 	width: 100%;
 }
-#calhead span.month {
-	font-size: 34px;
-	color: #CCC;
-	text-shadow: 0 2px 0 rgba(50,50,50,0.7);
+#calendar div.calhead table tr td {
+	height: 50px;
+	background: #646464;
+	border-bottom: solid 1px #505050;
+	border-right: solid 1px #505050;
+	border-top: solid 1px #646464;
+	border-left: solid 1px #646464;
+	padding: 0 10px;
+}
+#calendar div.calhead table tr td div.month {
+	color: #ececec;
+	font-weight: bold;
+	text-shadow: 1px 1px 0 #303030;
+	font-size:30px;
 }
 
 ul.tcontent {
@@ -160,10 +178,10 @@ section:nth-child(even){
 }
 
 .left_side .section-head.selected {
-	background-color: #47ab85 !important;
+	/*background-color: #47ab85 !important;
 	background-image: -moz-linear-gradient(#52cc9d, #44a07d) !important;
 	background-image: -webkit-linear-gradient(#52cc9d, #44a07d) !important;
-	background-image: linear-gradient(#52cc9d, #44a07d) !important;
+	background-image: linear-gradient(#52cc9d, #44a07d) !important;*/
 }
 
 .left_side .section-head {
@@ -171,24 +189,32 @@ section:nth-child(even){
 }
 .left_side .section-head a.mini_td {
 	display: table-cell;
-	color: #CCC;
+	color: #272727;
+	text-shadow: 0 1px 0 #5e5e5e;
 	padding: 10px;
 	text-decoration: none;
 }
 .left_side .section-head a.mini_td:hover {
+	color: #FFF !important;
+	text-shadow: 1px 1px 0 #616161 !important;
 	background-color: #565656;
 	background-image: -moz-linear-gradient(#5e5e5e, #474747);
 	background-image: -webkit-linear-gradient(#5e5e5e, #474747);
 	background-image: linear-gradient(#5e5e5e, #474747);
 }
-.left_side .section-head.selected a.mini_td:hover {
+/*.left_side .section-head.selected a.mini_td:hover {
 	background-color: #47ab85 !important;
 	background-image: -moz-linear-gradient(#52cc9d, #47ab85) !important;
 	background-image: -webkit-linear-gradient(#52cc9d, #47ab85) !important;
 	background-image: linear-gradient(#52cc9d, #47ab85) !important;
-}
+}*/
 .left_side .section-head.selected a.mini_td {
 	color: #FFF !important;
+	text-shadow: 1px 1px 0 #616161;
+	background-color: #47ab85 !important;
+	background-image: -moz-linear-gradient(#52cc9d, #47ab85) !important;
+	background-image: -webkit-linear-gradient(#52cc9d, #47ab85) !important;
+	background-image: linear-gradient(#52cc9d, #47ab85) !important;
 }
 .left_side .menu .section:last-child {
 	border-bottom: none !important;

@@ -80,16 +80,19 @@
 
 		<div id="right_wrap">
 
-			<div id="calhead">
-
-				<div class="td" align="left">
-					<span class="month">{{months[infra.month].long}}</span>
-				</div>
-
-			</div>
-
 			<div id="calendar">
 
+				<div class="calhead">
+
+					<table>
+						<tr>
+							<td align="left" valign="middle">
+								<div class="month">{{months[infra.month].long}}&nbsp;-&nbsp;{{infra.year}}</div>
+							</td>
+						</tr>
+					</table>
+
+				</div>
 				<div class="labels">
 
 					<table>
@@ -105,7 +108,9 @@
 
 					<table class="backbone">
 						<tr>
-							<td valign="top" align="right" ng:repeat="day in week.days" class="{{day.cl}}date"><div class="show_date">{{day.display}}</div></td>
+							<td valign="top" align="right" ng:repeat="day in week.days" class="{{day.cl}}date">
+								<div class="show_date">{{day.display}}</div>
+							</td>
 						</tr>
 					</table>
 
@@ -121,7 +126,7 @@
 						</tr>
 						<tr ng:repeat="row in temp[$index]">
 							<td ng:repeat="col in row" colspan="{{col.span}}">
-								<div class="span {{col.cl}} {{hover[col.id]}}" ng:if="col.span" ng:mouseover="highlight(col.id)" ng:mouseleave="highlight(0)" title="{{col.location}}">&nbsp;{{col.title}}</div>
+								<a href="/app/#/events/{{col.id}}" class="span {{col.cl}} {{hover[col.id]}}" ng:if="col.span" ng:mouseover="highlight(col.id)" ng:mouseleave="highlight(0)" title="{{col.location}}">&nbsp;{{col.title}}</a>
 								<span ng:if="!col.span">{{col.title}}</span>
 							</td>
 						</tr>

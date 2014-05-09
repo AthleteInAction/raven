@@ -303,7 +303,7 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 
 			$scope.dates = [];
 
-			var a = new Date($scope.event.start_date+' 00:00:00');
+			var a = new Date(Date.parse($scope.event.start_date));
 			var n = a;
 
 			for (var i=0,limit=$scope.event.days;i<limit;i++){
