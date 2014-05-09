@@ -48,41 +48,34 @@
 	width: 100%;
 	table-layout: fixed;
 }
-#calendar table.overlay tr td div.spancenter {
+#calendar table.overlay tr td div.span {
+	font-size:11px;
+	color: #575757;
+	text-align: left;
+	padding: 0 4px;
+}
+#calendar table.overlay tr td div.span.highlight {
+	background: #61E4B1 !important;
+}
+#calendar table.overlay tr td div.span.spancenter {
 	background: #4CBC91;
 	border-radius: 3px;
-	font-size:11px;
-	color: #575757;
-	text-align: left;
 	margin: 0 2px 0 2px;
-	padding: 0 4px;
 }
-#calendar table.overlay tr td div.spanleft {
+#calendar table.overlay tr td div.span.spanleft {
 	background: #4CBC91;
 	border-radius: 0 3px 3px 0;
-	font-size:11px;
-	color: #575757;
-	text-align: left;
 	margin: 0 2px 0 0px;
-	padding: 0 4px;
 }
-#calendar table.overlay tr td div.spanright {
+#calendar table.overlay tr td div.span.spanright {
 	background: #4CBC91;
 	border-radius: 3px 0px 0px 3px;
-	font-size:11px;
-	color: #575757;
-	text-align: left;
 	margin: 0 0px 0 2px;
-	padding: 0 4px;
 }
-#calendar table.overlay tr td div.spanboth {
+#calendar table.overlay tr td div.span.spanboth {
 	background: #4CBC91;
 	border-radius: 0px 0px 0px 0px;
-	font-size:11px;
-	color: #575757;
-	text-align: left;
 	margin: 0 0px 0 0px;
-	padding: 0 4px;
 }
 #calendar table.overlay tr td div.on {
 	background: #090;

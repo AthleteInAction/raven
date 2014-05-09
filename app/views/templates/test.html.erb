@@ -61,7 +61,7 @@
 						</div>
 						<ul class="expanded">
 							<li ng:repeat="event in m">
-								<a href="" class="nav-item title">
+								<a href="/app/#/events/{{event.id}}" class="nav-item title {{hover[event.id]}}" ng:mouseover="highlight(event.id)" ng:mouseleave="highlight(0)">
 									<div class="maintext F14">{{event.title}}</div>
 									<div class="subtext F12">{{event.location}}</div>
 									<div class="subtext F11">{{displayDate(event.start_date).M}}&nbsp;{{displayDate(event.start_date).d}},&nbsp;{{displayDate(event.start_date).y}}&nbsp;to&nbsp;{{displayDate(event.end_date).M}}&nbsp;{{displayDate(event.end_date).d}},&nbsp;{{displayDate(event.end_date).y}}</div>
@@ -102,7 +102,7 @@
 						</tr>
 						<tr ng:repeat="row in temp[$index]">
 							<td ng:repeat="col in row" colspan="{{col.span}}">
-								<div class="{{col.cl}}" ng:if="col.span" title="{{col.location}}">&nbsp;{{col.title}}</div>
+								<div class="span {{col.cl}} {{hover[col.id]}}" ng:if="col.span" ng:mouseover="highlight(col.id)" ng:mouseleave="highlight(0)" title="{{col.location}}">&nbsp;{{col.title}}</div>
 								<span ng:if="!col.span">{{col.title}}</span>
 							</td>
 						</tr>

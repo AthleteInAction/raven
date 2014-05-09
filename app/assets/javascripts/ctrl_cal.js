@@ -191,7 +191,7 @@ var CalCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeout
 							newEvent[x] = y;
 
 						});
-						
+
 						newEvent.week = week;
 						newEvent.span = span;
 
@@ -331,6 +331,14 @@ var CalCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeout
 		};
 		////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////
+		$scope.ttt = 'abc';
+		$scope.highlight = function(id){
+			JP(666);
+			$scope.hover = {};
+			$scope.hover[id] = 'highlight';
+			JP($scope.hover);
+
+		};
 
 	}
 ];
