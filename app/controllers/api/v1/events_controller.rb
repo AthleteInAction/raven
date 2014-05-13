@@ -9,6 +9,7 @@ module Api
       # ====================================================================================
   		def index
 
+        #sleep(3)
         @query = "SELECT i.*,e.* FROM invitations i JOIN events e ON e.id = i.event_id WHERE i.invitee_id = #{current_user.id}"
         @query << " AND i.accepted = #{params[:accepted]}" if params[:accepted]
         @query << " AND (MONTH(e.start_date) = #{params[:month]} OR MONTH(e.end_date) = #{params[:month]})" if params[:month]

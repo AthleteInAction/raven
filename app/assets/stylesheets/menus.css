@@ -1,0 +1,104 @@
+div.menu-wrap {
+	background: #505050;
+	padding: 3px;
+	padding-top: 0;
+}
+
+div.menu-wrap ul.menu-container {
+	background: #6f6f6f;
+	list-style: none;
+	border-radius: 2px;
+	border: 1px solid #3f3f3f;
+	padding: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	display: block;
+}
+
+div.menu-wrap ul.menu-container li.menu-section {
+	display: list-item;
+}
+
+div.menu-wrap ul.menu-container li.menu-section a.menu-label {
+	background-color: #434343;
+	background-image: -moz-linear-gradient(#4b4b4b, #434343);
+	background-image: -webkit-linear-gradient(#4b4b4b, #434343);
+	background-image: linear-gradient(#4b4b4b, #434343);
+	background-repeat: repeat-x;
+	display: block;
+	padding: 4px;
+	color: #272727;
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #535353;
+	text-decoration: none;
+	border-bottom: solid 1px #3f3f3f;
+}
+div.menu-wrap ul.menu-container li.menu-section:first-child a.menu-label.selected {
+	border-radius: 2px 2px 0 0;
+}
+div.menu-wrap ul.menu-container li.menu-section:last-child a.menu-label.selected {
+	border-radius: 0 0 2px 2px;
+}
+
+div.menu-wrap ul.menu-container li.menu-section a.menu-label.selected {
+	color: #FFF !important;
+	text-shadow: 1px 1px 0 #616161;
+	background-color: #47ab85 !important;
+	background-image: -moz-linear-gradient(#52cc9d, #47ab85) !important;
+	background-image: -webkit-linear-gradient(#52cc9d, #47ab85) !important;
+	background-image: linear-gradient(#52cc9d, #47ab85) !important;
+	border-bottom: solid 1px #30926B;
+}
+div.menu-wrap ul.menu-container li.menu-section:last-child a.menu-label {
+	border-bottom: none;
+}
+
+div.menu-wrap ul.menu-container li.menu-section a.menu-label:hover {
+	color: #AFAFAF;
+	text-shadow: 1px 1px 0 #1f1f1f;
+}
+
+div.menu-wrap ul.menu-container li.menu-section ul.menu-items {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item {
+	display: list-item;
+}
+div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item a.menu-item-label {
+	display: block;
+	padding: 4px;
+	background: #6f6f6f;
+	border-bottom: 1px solid #505050;
+	border-top: 1px solid #777;
+	border-left: solid 1px #777;
+	text-decoration: none;
+}
+div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item:first-child a.menu-item-label {
+	border-top: none;
+}
+div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item:last-child a.menu-item-label {
+	border-bottom: none;
+}
+
+div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item a.menu-item-label div.maintext {
+	color: #424242;
+	text-shadow: 0 1px 0 #818181;
+	font-size:14px;
+}
+div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item a.menu-item-label:hover div.maintext,
+div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item a.menu-item-label.highlight div.maintext {
+	color: #62E7AD !important;
+	text-shadow: 0 1px 0 #151515 !important;
+}
+div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item a.menu-item-label div.subtext {
+	color: #a7a7a7;
+	text-shadow: 0 1px 0 #414141;
+}
+div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item a.menu-item-label:hover div.subtext,
+div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item a.menu-item-label.highlight div.subtext {
+	color: #c4c4c4 !important;
+}

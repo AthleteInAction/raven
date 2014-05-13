@@ -1,142 +1,54 @@
-<!--<div class="inside">
+<div id="calendar">
 
-	<div class="section-wrap">
+	<div class="calhead">
 
-		<ul class="menu">
-			<li class="section" ng:repeat="i in [] | range:12">
-				<div class="section-head">
-					<div class="td" id="month_{{(i+1)}}">{{months[i].long}}</div>
-				</div>
-				<ul class="expanded">
-					<li>
-						<a href="" class="nav-item title">
-							HELLO
-						</a>
-					</li>
-					<li>
-						<a href="" class="nav-item">
-							HELLO
-						</a>
-					</li>
-					<li>
-						<a href="" class="nav-item">
-							HELLO
-						</a>
-					</li>
-					<li>
-						<a href="" class="nav-item title">
-							HELLO
-						</a>
-					</li>
-					<li>
-						<a href="" class="nav-item">
-							HELLO
-						</a>
-					</li>
-					<li>
-						<a href="" class="nav-item">
-							HELLO
-						</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
+		<table>
+			<tr>
+				<td align="left" valign="middle">
+					<div class="month">{{months[month].long}}&nbsp;-&nbsp;{{year}}</div>
+				</td>
+			</tr>
+		</table>
 
 	</div>
+	<div class="labels">
 
-</div>-->
-
-<div class="dash_wrap">
-
-	<div class="dash_cell">
-
-		<div class="left_side">
-
-			<div class="section-wrap">
-
-				<ul class="menu">
-					<li class="section" ng:repeat="m in sideEvents">
-						<div class="section-head {{mtab[$index]}}">
-							<a href="" class="mini_td" id="month_{{$index}}" ng:click="changeMonth($index)">{{months[$index].long}}</a>
-						</div>
-						<ul class="expanded">
-							<li ng:repeat="event in m">
-								<a href="/app/#/events/{{event.id}}" class="nav-item title {{hover[event.id]}}" ng:mouseover="highlight(event.id)" ng:mouseleave="highlight(0)">
-									<div class="maintext F14">{{event.title}}</div>
-									<div class="subtext F12">{{event.location}}</div>
-									<div class="subtext F11">{{displayDate(event.start_date).M}}&nbsp;{{displayDate(event.start_date).d}},&nbsp;{{displayDate(event.start_date).y}}&nbsp;to&nbsp;{{displayDate(event.end_date).M}}&nbsp;{{displayDate(event.end_date).d}},&nbsp;{{displayDate(event.end_date).y}}</div>
-								</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-
-			</div>
-
-		</div>
+		<table>
+			<tr>
+				<td valign="middle" ng:repeat="day in days">
+					<div class="show_day">{{day.long}}</div>
+				</td>
+			</tr>
+		</table>
 
 	</div>
-	<div class="dash_cell">
+	<div class="week" ng:repeat="week in weeks">
 
-		<div id="right_wrap">
+		<table class="backbone">
+			<tr>
+				<td valign="top" align="right" ng:repeat="day in week.days" class="{{day.cl}}date">
+					<div class="show_date">{{day.display}}</div>
+				</td>
+			</tr>
+		</table>
 
-			<div id="calendar">
-
-				<div class="calhead">
-
-					<table>
-						<tr>
-							<td align="left" valign="middle">
-								<div class="month">{{months[infra.month].long}}&nbsp;-&nbsp;{{infra.year}}</div>
-							</td>
-						</tr>
-					</table>
-
-				</div>
-				<div class="labels">
-
-					<table>
-						<tr>
-							<td valign="middle" ng:repeat="day in days">
-								<div class="show_day">{{day.long}}</div>
-							</td>
-						</tr>
-					</table>
-
-				</div>
-				<div class="week" ng:repeat="week in weeks">
-
-					<table class="backbone">
-						<tr>
-							<td valign="top" align="right" ng:repeat="day in week.days" class="{{day.cl}}date">
-								<div class="show_date">{{day.display}}</div>
-							</td>
-						</tr>
-					</table>
-
-					<table class="overlay">
-						<tr>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr ng:repeat="row in temp[$index]">
-							<td ng:repeat="col in row" colspan="{{col.span}}">
-								<a href="/app/#/events/{{col.id}}" class="span {{col.cl}} {{hover[col.id]}}" ng:if="col.span" ng:mouseover="highlight(col.id)" ng:mouseleave="highlight(0)" title="{{col.location}}">&nbsp;{{col.title}}</a>
-								<span ng:if="!col.span">{{col.title}}</span>
-							</td>
-						</tr>
-					</table>
-
-				</div>
-
-			</div>
-
-		</div>
+		<table class="overlay">
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr ng:repeat="row in overlay[$index]">
+				<td ng:repeat="event in row" colspan="{{event.span}}">
+					<a href="/app/#/events/{{event.id}}" class="span {{event.cl}} {{hover[event.id]}}" ng:mouseover="highlight(event.id)" ng:mouseleave="highlight(0)" ng:if="event.span">&nbsp;{{event.text}}</a>
+					<span ng:if="!event.span">&nbsp;</span>
+				</td>
+			</tr>
+		</table>
 
 	</div>
 

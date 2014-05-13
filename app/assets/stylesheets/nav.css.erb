@@ -1,0 +1,48 @@
+#nav {
+	width: 100%;
+	padding-bottom: 3px;
+	background-color: #505050;
+	display: table;
+}
+#nav div.nav_wrap {
+	display: table;
+	width: 100%;
+	background-color: #434343;
+	background-image: -moz-linear-gradient(#4b4b4b, #434343);
+	background-image: -webkit-linear-gradient(#4b4b4b, #434343);
+	background-image: linear-gradient(#4b4b4b, #434343);
+	background-repeat: repeat-x;
+	border-bottom: solid 1px #3f3f3f;
+}
+#nav div.sec {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 4px;
+	width: 1px;
+}
+#nav div.sec:first-child {
+	width: auto;
+	padding-left: 10px;
+}
+#nav div.sec:last-child {
+	padding-right: 10px;
+}
+#nav div.sec a.app_logo {
+	display: block;
+	background: url(<%= asset_path('app_logo.png') %>) no-repeat center center;
+	height: 29px;
+	width: 49px;
+	margin-top: 2px;
+}
+#nav div.sec a {
+	font: 13px Helvetica, arial, freesans, clean, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #242424;
+	text-shadow: 0 1px 0 #535353;
+	text-decoration: none;
+}
+#nav div.sec a:hover {
+	color: #ed7b70;
+	text-shadow: 0 1px 0 #151515;
+}

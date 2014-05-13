@@ -1,0 +1,49 @@
+<div id="calendar" calendar ng:init="getFromRoute(infra)">
+
+	<div class="calhead">
+
+		<table>
+			<tr>
+				<td align="left" valign="middle">
+					<div class="month">{{months[infra.month].long}}&nbsp;-&nbsp;{{infra.year}}</div>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+	<div class="labels">
+
+		<table>
+			<tr>
+				<td valign="middle" ng:repeat="day in days">
+					<div class="show_day">{{day.long}}</div>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+	<div class="week" ng:repeat="week in calendar">
+
+		<table class="backbone">
+			<tr>
+				<td valign="top" align="right" ng:repeat="day in week.days" class="{{day.cl}}date">
+					<div class="show_date">{{day.date}}</div>
+				</td>
+			</tr>
+		</table>
+
+		<table class="overlay">
+			<tr>
+				<td ng:repeat="i in [] | range:7">&nbsp;</td>
+			</tr>
+			<tr ng:repeat="row in temp[$index]">
+				<td ng:repeat="col in row" colspan="{{col.span}}">
+					<a href="{{col.link}}" class="span {{col.cl}} {{hover[col.id]}}" ng:if="col.span">&nbsp;{{col.text}}</a>
+					<span ng:if="!col.span">&nbsp;</span>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+</div>

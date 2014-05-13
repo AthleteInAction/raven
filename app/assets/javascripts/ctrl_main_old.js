@@ -1,13 +1,15 @@
-var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeout','$location','$anchorScroll',
+/*var MainCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeout','$location','$anchorScroll',
 	function($scope,$routeParams,$location,$route,ApiModel,$timeout,$location,$anchorScroll){
-
+		
 		$scope.params = $routeParams;
+		$scope.infra = {};
+		$scope.infra.today = new Date();
+		$scope.mtab = {};
+		$scope.months = months;
+		$scope.days = days;
+		JP($scope.params);
 
-		var s = {};
-		s.today = new Date();
-		s.year = $location.search().year || s.today.getUTCFullYear();
-		s.month = $location.search().month || (s.today.getUTCMonth()+1);
-		s.month--;
+
 
 		// Line Up
 		/////////////////////////////////////////////////////////////////////////////////
@@ -80,7 +82,7 @@ var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$ti
 		/////////////////////////////////////////////////////////////////////////////////
 		$scope.populateCalendar = function(){
 
-			//$timeout(function(){$('#month_'+s.month).goTo();},10);
+			$timeout(function(){$('#month_'+$scope.infra.month).goTo();},10);
 
 			$scope.elist = {};
 			$.each($scope.weeks,function(key,val){
@@ -122,14 +124,14 @@ var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$ti
 
 			});
 
-			$scope.overlay = [];
+			$scope.temp = [];
 			$.each($scope.rows,function(week,rows){
 
-				$scope.overlay[week] = {};
+				$scope.temp[week] = {};
 
 				$.each(rows,function(row,events){
 
-					$scope.overlay[week][row] = [];
+					$scope.temp[week][row] = [];
 
 					$.each(events,function(key,event){
 
@@ -167,7 +169,7 @@ var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$ti
 							var f=0;
 							var diff = dateDiff(d1,s1);
 							while(f<(diff-1)){
-								$scope.overlay[week][row].push({title: ''});
+								$scope.temp[week][row].push({title: ''});
 								f++;
 							}
 						} else {
@@ -179,7 +181,7 @@ var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$ti
 
 							var diff = days_between(so,s1);
 							while(f<(diff-1)){
-								//$scope.overlay[week][row].push({title: ''});
+								//$scope.temp[week][row].push({title: ''});
 								f++;
 							}
 						}
@@ -190,10 +192,10 @@ var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$ti
 
 						});
 
-						newEvent.text = event.title;
+						newEvent.week = week;
 						newEvent.span = span;
 
-						$scope.overlay[week][row].push(newEvent);
+						$scope.temp[week][row].push(newEvent);
 
 
 
@@ -214,16 +216,40 @@ var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$ti
 		/////////////////////////////////////////////////////////////////////////////////
 		$scope.getEvents = function(){
 
+			$scope.events = [];
+			$scope.temp = [];
+			JP('GetEvents');
+			$scope.sideEvents = [[],[],[],[],[],[],[],[],[],[],[],[]];
+
 			this.options = {
 				type: 'events',
-				year: s.year,
+				year: $scope.infra.year,
 				orderby: 'start_date',
 				order: 'ASC'
 			};
-
 			ApiModel.query(this.options,function(data){
 				
 				$scope.events = data.events;
+				var tmp = [[],[],[],[],[],[],[],[],[],[],[],[]];
+
+				$.each(data.events,function(key,val){
+
+					var aa = val.start_date.split('-');
+					var aStart = new Date(aa[0],(aa[1]-1),aa[2]);
+
+					var aa = val.end_date.split('-');
+					var aEnd = new Date(aa[0],(aa[1]-1),aa[2]);
+
+					if (aStart.getUTCMonth() == aEnd.getUTCMonth()){
+						tmp[aStart.getUTCMonth()].push(val);
+					} else {
+						tmp[aStart.getUTCMonth()].push(val);
+						tmp[aEnd.getUTCMonth()].push(val);
+					}
+
+				});
+
+				$scope.sideEvents = tmp;
 
 				$scope.populateCalendar();
 
@@ -238,53 +264,118 @@ var CalendarCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$ti
 		// Build Calendar
 		/////////////////////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////
-		$scope.buildCalendar = function(){
+		$scope.buildCalendar = function(year,month,getevents){
 
-			this.month_1 = new Date(s.year,s.month,1);
-			this.offset = this.month_1.getUTCDay();
+			// Set Year & Month
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
+			$scope.infra.year = year;
+			$scope.infra.month = (month-1);
+			$scope.mtab = {};
+			$scope.mtab[$scope.infra.month] = 'selected';
+			JP($scope.mtab);
+			/////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////
 
-			this.start = this.month_1;
-			this.start.setDate(this.month_1.getUTCDate()-this.offset);
+			$scope.infra.dayOne = new Date($scope.infra.year,($scope.infra.month),1);
+			$scope.infra.firstDay = $scope.infra.dayOne.getUTCDay();
+
+			$scope.grid = {};
+			$scope.grid.start = new Date($scope.infra.year,($scope.infra.month),1);
+			$scope.grid.start.setDate($scope.infra.dayOne.getUTCDate()-$scope.infra.firstDay);
+
+			$scope.grid.end = new Date($scope.grid.start);
+			$scope.grid.end.setDate($scope.grid.start.getUTCDate()+41);
 
 			$scope.weeks = [];
 			var i = 1;
 			var d = 1;
 			var w = 1;
-			var tdate = this.start;
+			var tdate = new Date($scope.grid.start);
 			while(i<=42){
 				
-				if (tdate.getUTCMonth() == s.month){
+				if (tdate.getUTCMonth() == $scope.infra.month){
 					this.cl = 'in';
 				} else {
 					this.cl = 'out';
 				}
 				if ($scope.weeks[w-1]){
-					$scope.weeks[w-1].days[d-1] = {
-						stamp: tdate.getTime(),
-						display: tdate.getUTCDate(),
-						cl: this.cl,
-						i: (i+1)
-					};
+					$scope.weeks[w-1].days[d-1] = {stamp: tdate.getTime(),display: tdate.getUTCDate(),cl: this.cl,i: (i+1)};
 				} else {
-					$scope.weeks[w-1] = {
-						days: [{
-							stamp: tdate.getTime(),
-							display: tdate.getUTCDate(),
-							cl: this.cl
-						}]
-					};
+					$scope.weeks[w-1] = {days: [{stamp: tdate.getTime(),display: tdate.getUTCDate(),cl: this.cl}]};
 				}
 
 				tdate.setDate(tdate.getUTCDate()+1);
 				d++;if (i%7 === 0){w++;d=1;}i++;
 			}
+			JP({weeks: $scope.weeks});
 
-			$scope.getEvents();
+			if (getevents){
+				$scope.getEvents();
+			} else {
+				$scope.populateCalendar();
+			}
 
 		};
-		$scope.buildCalendar();
+		$scope.buildCalendar(2014,4,true);
 		/////////////////////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////
 
+		$scope.changeCal = function(year,month,getevents){
+
+			JP($scope.infra.year+'===='+month);
+
+			if (month && month <=12 && month > 0){
+				
+			} else {
+				month = new Date().getMonth();
+			}
+
+			if (year){
+				
+			} else {
+				year = new Date().getFullYear();
+			}
+
+			if ($scope.infra.year != year){getevents = true;}
+
+			$scope.buildCalendar(year,month,getevents);
+
+		};
+
+
+
+		// Display Date
+		////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////
+		$scope.displayDate = function(date){
+
+			var aa = date.split('-');
+			var a = new Date(aa[0],(aa[1]-1),aa[2]);
+
+			var n = a;
+
+			var newdate = {
+				m: n.getUTCMonth(),
+				M: months[n.getUTCMonth()].short,
+				MM: months[n.getUTCMonth()].long,
+				y: n.getUTCFullYear(),
+				d: n.getUTCDate(),
+				D: days[n.getUTCDay()].short,
+				DD: days[n.getUTCDay()].long
+			};
+			
+			return newdate;
+
+		};
+		////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////
+		$scope.highlight = function(id){
+
+			$scope.hover = {};
+			$scope.hover[id] = 'highlight';
+
+		};
+
 	}
-];
+];*/

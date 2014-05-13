@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wambl</title>
+
+  <% if current_user %>
+  	<script type="text/javascript">var current_user = <%= current_user.to_json(except: [:password_digest]).html_safe %>;</script>
+  <% end %>
+  
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'custom_'+params[:controller] %>
+  <%= favicon_link_tag 'favicon.ico' %>
+
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+</head>
+<body>
+
+	<%= yield %>
+
+</body>
+</html>

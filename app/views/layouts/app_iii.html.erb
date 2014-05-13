@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wambl</title>
+
+  <% if current_user %>
+  	<script type="text/javascript">var current_user = <%= current_user.to_json(except: [:password_digest]).html_safe %>;</script>
+  <% end %>
+  
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'custom_'+params[:controller] %>
+  <%= favicon_link_tag 'favicon.ico' %>
+
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+</head>
+<body ng:app="RavenNG" ng:controller="MainCtrl">
+
+	<div id="nav">
+		<div class="nav_wrap">
+
+			<div class="sec">
+				<a class="app_logo" href="/"></a>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="container">
+
+		<div class="dash_wrap">
+
+			<div class="dash_cell">
+
+				<div class="left_side">
+
+					<div class="section-wrap">
+
+						<ul class="menu">
+							<li class="section" ng:repeat="m in sideEvents">
+								<div class="section-head {{monthsel[$index]}}">
+									<a href="/app/#/calendar?year={{year}}&month={{($index+1)}}" class="mini_td" id="month_{{$index}}">{{months[$index].long}}</a>
+								</div>
+								<ul class="expanded">
+									<li ng:repeat="event in m" class="{{monthsel[$parent.$index]}}">
+										<a href="/app/#/events/{{event.id}}" class="nav-item title {{hover[event.id]}}" ng:mouseover="highlight(event.id)" ng:mouseleave="highlight(0)">
+											<div class="maintext F14">{{event.title}}</div>
+											<div class="subtext F12">{{event.location}}</div>
+											<div class="subtext F11">{{displayDate(event.start_date).M}}&nbsp;{{displayDate(event.start_date).d}},&nbsp;{{displayDate(event.start_date).y}}&nbsp;to&nbsp;{{displayDate(event.end_date).M}}&nbsp;{{displayDate(event.end_date).d}},&nbsp;{{displayDate(event.end_date).y}}</div>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+
+					</div>
+
+				</div>
+
+			</div>
+			<div class="dash_cell">
+
+				<div id="right_wrap">
+
+					<div ng:view></div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

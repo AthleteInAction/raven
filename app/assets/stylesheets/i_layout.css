@@ -1,0 +1,23 @@
+#layout {
+	width: 100%;
+	height: 100%;
+}
+#layout tr.layout:first-child td.layout {
+	height: 1px;
+}
+#layout tr.layout td.layout div.scroller {
+	overflow: scroll;
+	width: 100%;
+	height: 100%;
+}
+#layout tr.layout:last-child td.layout:first-child {
+	width: 250px;
+	background: #505050;
+}
+#layout tr.layout:last-child td.layout:last-child div.scroller {
+
+}
+
+#ngview {
+	padding: 40px;
+}
