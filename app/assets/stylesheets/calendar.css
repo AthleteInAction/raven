@@ -136,11 +136,17 @@
 	border-left: solid 1px #646464;
 	padding: 0 10px;
 }
-#calendar div.calhead table tr td div.month {
-	color: #ececec;
+#calendar div.calhead table tr td div.cal-labels {
+	display: table;
+	width: 100%;
+}
+#calendar div.calhead table tr td div.cal-labels div.month-td {
+	display: table-cell;
+	vertical-align: middle;
+	color: #DDD;
+	text-shadow: 0 1px 0 #151515;
+	font-size: 24px;
 	font-weight: bold;
-	text-shadow: 1px 1px 0 #303030;
-	font-size:30px;
 }
 
 ul.tcontent {

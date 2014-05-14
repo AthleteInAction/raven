@@ -1,0 +1,131 @@
+<div class="inside">
+
+	<div class="section-wrap">
+
+		<ul class="menu">
+			<li class="section">
+				<div class="section-head">
+					<div class="td">{{event.title}}&nbsp;-&nbsp;{{event.location}}</div>
+					<div class="td" align="right" ng:show="myInvitation.role == 'creator'"><a href="/app/#/events/{{params.id}}/edit">Edit</a></div>
+				</div>
+				<ul class="expanded">
+					<li>
+						<div class="blank">
+							<div class="split noborder">
+
+								<div class="top-item map">
+									<div id="map-canvas">Location Not Found</div>
+								</div>
+								<div class="top-item info">
+
+									<div class="info_section">
+
+										<table cellpadding="0" cellspacing="0" border="0" height="350" width="100%" class="info_tabs">
+											<tr class="info_row">
+												<td valign="top" class="info_cell">
+													<div class="tab_section">
+														<ul>
+															<li class="{{tabs.info}}"><a href="" ng:click="tabs = {info:'selected'};" onclick="return false;">Event&nbsp;Info</a></li>
+															<li class="{{tabs.people}}"><a href="http://www.google.com" ng:click="tabs = {people:'selected'};" onclick="return false;">People</a></li>
+															<li class="{{tabs.expenses}}"><a href="" ng:click="tabs = {expenses:'selected'};" onclick="return false;">Expenses</a></li>
+															<li class="{{tabs.directions}}"><a href="" ng:click="tabs = {directions:'selected'}" onclick="return false;">Directions</a></li>
+														</ul>
+														<div class="CLEAR"></div>
+													</div>
+												</td>
+											</tr>
+											<!-- 2001:4800:7812:514:a3d0:9391:ff04:8b30 -->
+											<!-- 2001:4800:7812:514:a3d0:9391:ff04:8b30 -->
+											<tr class="info_row">
+												<td valign="top" ng:show="tabs.info" class="info_cell">
+													<div class="full table">
+														<div class="top-item-even">
+															<div class="h3 GREEN"><b>{{event.title}}</b></div>
+															<div class="h4 GREY">{{event.location}}&nbsp;&nbsp;&nbsp;{{dates[0].m}}/{{dates[0].d}}/{{dates[0].y}}&nbsp;-&nbsp;{{dates[dates.length-1].m}}/{{dates[dates.length-1].d}}/{{dates[dates.length-1].y}}</div>
+															<div class="h4 GREY" ng:show="event.cost > 0">{{event.days}}&nbsp;Days,&nbsp;{{event.nights}}&nbsp;Nights&nbsp;&nbsp;&nbsp;Cost:&nbsp;<span class="GREEN">{{event.cost | currency:'$'}}</span></div>
+														</div>
+													</div>
+
+													<div class="divider"></div>
+
+													<div class="h4 GREY" ng-bind-html-unsafe="event.description_html">{{event.description_html}}</div>
+												</td>
+												<td valign="top" ng:show="tabs.people" class="info_cell">
+													<div class="dir_wrap">
+														<div class="RED" ng:show="invalidEmail">{{invalidEmail}}</div>
+														<input type="text" class="lrg full" placeholder="Invite Someone" onenter="addInvitee();" id="invite_input" ng:model="inviteDisplay" />
+														<div ng:repeat="invitee in invitations" class="invitee">
+															<div class="td mid">
+																<div class="name GREEN" ng-bind-html-unsafe="getUser(invitee.invitee_id).name">{{getUser(invitee.invitee_id).name}}</div>
+																<span class="">{{getUser(invitee.invitee_id).email}}</span>
+															</div>
+															<div class="td mid" align="right">
+																<div class="GREEN" ng:show="invitee.accepted">CONFIRMED</div>
+																<div class="RED" ng:show="!invitee.accepted">PENDING</div>
+															</div>
+														</div>
+													</div>
+												</td>
+												<td valign="top" ng:show="tabs.expenses" class="info_cell">
+													<div ng:repeat="expense in expenses" class="expense">
+														<div class="td mid name">
+															<span class="GREEN">{{expense.price | currency:'$'}}</span>&nbsp;<span ng:show="expense.frequency == 'per_day'">/&nbsp;day</span><span ng:show="expense.frequency == 'per_night'">/&nbsp;night</span><span ng:show="expense.frequency == 'one_time'">once</span><span ng:show="expense.description">&nbsp;for&nbsp;{{expense.description}}</span>
+														</div>
+														<div class="td mid name" align="right">
+															<span class="">{{eTotals[expense.id] | currency:'$'}}</span>
+														</div>
+													</div>
+													<div class="expense">
+														<div class="td mid name">
+															<span class="">Total:</span>
+														</div>
+														<div class="td mid name" align="right">
+															<span class="GREEN">{{event.cost | currency:'$'}}</span>
+														</div>
+													</div>
+												</td>
+												<td valign="top" ng:show="tabs.directions" class="info_cell">
+													<div class="dir_wrap">
+														<input type="text" class="lrg full" placeholder="Get Directions (city, address...)" ng:model="start_location" onenter="getRoute();" />
+														<div id="directions-panel"></div>
+													</div>
+												</td>
+											</tr>
+										</table>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="t7">
+								<form onsubmit="return false;" ng:submit="submitComment();">
+									<textarea class="lrg full commentInput" placeholder="Leave a Comment (Shift + Enter to submit)" ng:model="newComment" shiftsubmit></textarea>
+								</form>
+							</div>
+
+							<div class="t7">
+
+								<div class="comment GREY" ng:repeat="comment in comments">
+									<div class="td top user">
+										<div class="GREEN" ng:click="getComments()">{{getUser(comment.user_id).name}}:</div>
+										<div class="time">{{comment.clean_date}}</div>
+									</div>
+									<div class="td top">
+										<div class="body" ng-bind-html-unsafe="comment.body_html">{{comment.body_html}}</div>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+
+</div>

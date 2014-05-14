@@ -22,6 +22,8 @@ Raven::Application.routes.draw do
         get 'users',to: 'events#users'
       end
 
+      get 'instagram/:hashtag',to: 'instagram#index'
+
       resources :links
       resources :invitations
       resources :users do

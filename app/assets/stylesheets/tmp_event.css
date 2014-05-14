@@ -1,0 +1,129 @@
+div.event-title {
+	font-size:40px;
+	color: #CCC;
+	text-shadow: 2px 2px 0 #151515;
+}
+div.event-info {
+	font-size:14px;
+	color: #56E7BF;
+	text-shadow: 1px 1px 0 #151515;
+}
+div.event-info.red {
+	color: #ed7b70;
+}
+div.event-hashtag {
+	margin-top:-5px;
+	color: #ed7b70;
+	text-shadow: 2px 2px 0 #151515;
+	margin-bottom: 15px;
+	font-size: 16px;	
+}
+
+#map-canvas {
+	width: 100%;
+	box-shadow: 2px 2px 6px #151515;
+	margin-top: 7px;
+	margin-bottom: 7px;
+}
+div.map-wrap input[type="text"].lrg {
+	margin: 0;
+}
+
+div.event-top {
+	display: table;
+	width: 100%;
+}
+div.event-top div.event-top-cell {
+	display: table-cell;
+	text-align: left;
+	vertical-align: top;
+}
+div.event-top div.event-top-cell:last-child {
+	text-align: right;
+}
+
+div.event-invite {
+
+}
+div.event-invite button.btn {
+	background-color: #dddddd;
+	background-image: -moz-linear-gradient(#eee, #ddd);
+	background-image: -webkit-linear-gradient(#eee, #ddd);
+	background-image: linear-gradient(#eee, #ddd);
+	background-repeat: repeat-x;
+
+	border-radius: 3px;
+	border: solid 1px #f1f1f1;
+	border-right: solid 1px #bdbdbd;
+	border-bottom: solid 1px #bdbdbd;
+}
+div.event-invite button.btn:hover {
+	color: #3c3c3c;
+	background-color: #eee;
+	background-image: -moz-linear-gradient(#bbb, #eee);
+	background-image: -webkit-linear-gradient(#bbb, #eee);
+	background-image: linear-gradient(#bbb, #eee);
+	background-repeat: repeat-x;
+}
+
+div.instagram-wrap {
+	margin-top: 20px;
+	text-align: center;
+}
+div.instagram-wrap div.instagram-img {
+	margin-top: 20px;
+}
+div.instagram-wrap div.instagram-img img {
+	box-shadow: 2px 2px 2px #151515;
+}
+div.instagram-wrap div.instagram-img:first-child {
+	margin-top: 0;
+}
+
+#event-nav {
+	margin-top: 16px;
+	width: 100%;
+
+	background-color: #dddddd;
+	background-image: -moz-linear-gradient(#eee, #ddd);
+	background-image: -webkit-linear-gradient(#eee, #ddd);
+	background-image: linear-gradient(#eee, #ddd);
+	background-repeat: repeat-x;
+
+	border-radius: 3px;
+	border: solid 1px #f1f1f1;
+	border-right: solid 1px #bdbdbd;
+	border-bottom: solid 1px #bdbdbd;
+
+	height: 20px;
+
+	table-layout: fixed;
+}
+#event-nav tr td {
+	border-left: solid 1px #f1f1f1;
+	border-right: solid 1px #bdbdbd;
+	text-align: center;
+	vertical-align: middle;
+}
+#event-nav tr td:first-child {
+	border-left: none;
+}
+#event-nav tr td:last-child {
+	border-right: none;
+}
+#event-nav tr td a.event-nav-item {
+	display: block;
+	padding: 4px;
+	color: #666;
+	text-shadow: 0 1px 0 #F3F3F3;
+	font-weight: bold;
+}
+#event-nav tr td a.event-nav-item:hover,
+#event-nav tr td a.event-nav-item.selected {
+	color: #3c3c3c;
+	background-color: #eee;
+	background-image: -moz-linear-gradient(#bbb, #eee);
+	background-image: -webkit-linear-gradient(#bbb, #eee);
+	background-image: linear-gradient(#bbb, #eee);
+	background-repeat: repeat-x;
+}
