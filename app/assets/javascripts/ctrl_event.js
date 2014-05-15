@@ -3,32 +3,46 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 
 		$scope.params = $routeParams;
 		$scope.current_user = current_user;
+		$scope.users = {};
+		$scope.invitations = [];
+		$scope.etab = {people: 'selected'};
 
-		$scope.map;
-		$scope.mapOptions;
-		$scope.marker;
-		$scope.geocoder = new google.maps.Geocoder();
-		$scope.directionsService = new google.maps.DirectionsService();
-		$scope.directionsDisplay;
-		$scope.geoLocation;
-		$scope.locationFound = false;
-		$scope.etab = {};
-		$scope.etab.people = 'selected';
-		$scope.instagrams = [];
+		// Get all users associated with the event
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
+		$scope.getUsers = function(){
 
-		$scope.changeTab = function(tab){
+			this.options = {
+				type: 'events',
+				id: $scope.params.id,
+				extend: 'users'
+			};
 
-			$scope.etab = {};
-			$scope.etab[tab] = 'selected';
+			ApiModel.query(this.options,function(data){
+
+				$.each(data.users,function(i,user){
+
+					$scope.users[user.id] = user;
+					if (!user.name){
+						$scope.users[user.id].name = '--';
+					}
+
+				});
+
+				$scope.getEvent();
+
+			});
 
 		};
+		$scope.getUsers();
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
 
-		$scope.showMap = function(){
 
-			$timeout(function(){$scope.geocode($scope.event.location);},0);
 
-		};
-
+		// Get Event
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
 		$scope.getEvent = function(){
 
 			this.options = {
@@ -38,91 +52,66 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 
 			ApiModel.get(this.options,function(data){
 
-				$scope.event = data.event;
-				$scope.event.from = new Date(Date.parse(data.event.start_date));
-				$scope.event.to = new Date(Date.parse(data.event.end_date));
-				$scope.event.hashtag = 'wambl';
-				$scope.geocode(data.event.location);
-				$scope.getInstagram($scope.event.hashtag);
+				$timeout(function(){
+
+					$scope.event = data.event;
+					$scope.event.from = new Date(Date.parse(data.event.start_date));
+					$scope.event.to = new Date(Date.parse(data.event.end_date));
+					$scope.event.hashtag = 'wambl';
+
+					$scope.getInvitations();
+
+				},0);
 
 			});
 
 		};
-		$scope.getEvent();
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
 
 
-		// Geocode
-		////////////////////////////////////////////////////////////////////////////////
-		////////////////////////////////////////////////////////////////////////////////
-		$scope.geocode = function(location){
 
-			$scope.geocoder.geocode({address: location},function(results,status){
+		// Change Tabs
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
+		$scope.changeTab = function(tab){
 
-				if (status == google.maps.GeocoderStatus.OK){
-					
-					$scope.geoLocation = results;
-					$scope.setMap();
-
-				} else {
-
-					JP('Location not Found');
-
-				}
-
-			});
+			$scope.etab = {};
+			$scope.etab[tab] = 'selected';
 
 		};
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
+
+
+
+		// Get Invitations
 		////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////
-
-
-
-		// Set Map
-		////////////////////////////////////////////////////////////////////////////////
-		////////////////////////////////////////////////////////////////////////////////
-		$scope.setMap = function(){
-
-			$scope.directionsDisplay = new google.maps.DirectionsRenderer();
-			$scope.directionsDisplay.setPanel(document.getElementById('directions-panel'));
-
-			$scope.mapOptions = {
-				zoom: 8,
-				center: $scope.geoLocation[0].geometry.location
-			};
-
-			$scope.map = new google.maps.Map(document.getElementById('map-canvas'),$scope.mapOptions);
-
-			$scope.marker = new google.maps.Marker({
-			    map: $scope.map,
-			    position: $scope.mapOptions.center,
-			    title: $scope.event.location,
-			    animation: google.maps.Animation.DROP,
-			});
-
-			if ($scope.start_location){
-				//$scope.getRoute();
-				//$scope.locationFound = true;   
-			}
-
-		};
-		////////////////////////////////////////////////////////////////////////////////
-		////////////////////////////////////////////////////////////////////////////////
-
-
-
-		// Get Instagram Tag
-		////////////////////////////////////////////////////////////////////////////////
-		////////////////////////////////////////////////////////////////////////////////
-		$scope.getInstagram = function(tag){
+		$scope.getInvitations = function(map){
 
 			this.options = {
-				type: 'instagram',
-				extend: tag
+				type: 'events',
+				id: $scope.params.id,
+				extend: 'invitations'
 			};
+
+			var tmp = [];
 
 			ApiModel.query(this.options,function(data){
 
-				$scope.instagrams = data.body.data;
+				$.each(data.invitations,function(i,invite){
+
+					if (invite.invitee_id == current_user.id){
+						$scope.myInvitation = invite;
+					} else {
+						invite.user = $scope.users[invite.invitee_id];
+						tmp.push(invite);
+					}
+
+				});
+
+				$scope.invitations = tmp;
 
 			});
 

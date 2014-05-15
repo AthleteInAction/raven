@@ -19,7 +19,8 @@ div.menu-wrap ul.menu-container li.menu-section {
 	display: list-item;
 }
 
-div.menu-wrap ul.menu-container li.menu-section a.menu-label {
+div.menu-wrap ul.menu-container li.menu-section a.menu-label,
+div.menu-wrap ul.menu-container li.menu-section div.menu-label {
 	background-color: #434343;
 	background-image: -moz-linear-gradient(#4b4b4b, #434343);
 	background-image: -webkit-linear-gradient(#4b4b4b, #434343);
@@ -33,6 +34,10 @@ div.menu-wrap ul.menu-container li.menu-section a.menu-label {
 	text-shadow: 0 1px 0 #535353;
 	text-decoration: none;
 	border-bottom: solid 1px #3f3f3f;
+}
+div.menu-wrap ul.menu-container li.menu-section div.menu-label {
+	color: #AFAFAF;
+	text-shadow: 1px 1px 0 #1f1f1f;
 }
 div.menu-wrap ul.menu-container li.menu-section:first-child a.menu-label.selected {
 	border-radius: 2px 2px 0 0;

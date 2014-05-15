@@ -24,6 +24,16 @@ var MainCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeou
 
 			s.old_year = s.year;
 
+			$scope.slash = window.location.hash.split('/');
+
+			if ($scope.slash[1] == 'events'){
+				$scope.hover = {};
+				$scope.hover[$scope.slash[2]] = 'highlight';
+				$scope.monthsel = {};
+			} else {
+				$scope.hover = {};
+			}
+
 		});
 
 		$scope.getSideEvents = function(){
@@ -92,8 +102,12 @@ var MainCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeou
 
 		$scope.highlight = function(id){
 
-			$scope.hover = {};
-			$scope.hover[id] = 'highlight';
+			if ($scope.slash[1] != 'events'){
+
+				$scope.hover = {};
+				$scope.hover[id] = 'highlight';
+
+			}
 
 		};
 
