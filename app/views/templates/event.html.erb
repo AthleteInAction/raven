@@ -15,30 +15,12 @@
 	<div class="event-title">{{event.title}}</div>
 	<div class="event-hashtag" ng:if="event.hashtag">#{{event.hashtag}}</div>
 
-	<div class="event-top">
-
-		<div class="event-top-cell">
-
-			<div class="event-info"><span class="GREY">From:</span>&nbsp;&nbsp;&nbsp;&nbsp;{{days[event.from.getUTCDay()].long}},&nbsp;{{months[event.from.getUTCMonth()].long}}&nbsp;{{event.from.getUTCDate()}},&nbsp;{{event.from.getUTCFullYear()}}</div>
-			<div class="event-info"><span class="GREY">To:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{days[event.to.getUTCDay()].long}},&nbsp;{{months[event.to.getUTCMonth()].long}}&nbsp;{{event.to.getUTCDate()}},&nbsp;{{event.to.getUTCFullYear()}}</div>
-			<div class="event-info" ng:if="event.location"><span class="GREY">Where:</span>&nbsp;&nbsp;{{event.location}}</div>
-
-		</div>
-		<div class="event-top-cell">
-
-			<div class="event-invite">
-
-				<button class="btn">Accept Invite</button>
-
-			</div>
-
-		</div>
-
-	</div>
-
 	<table class="event-nav" cellpadding="0" cellspacing="0" border="0">
 
 		<tr>
+			<td>
+				<a href="" class="event-nav-item {{etab.info}}" ng:click="changeTab('info')">Info</a>
+			</td>
 			<td>
 				<a href="" class="event-nav-item {{etab.people}}" ng:click="changeTab('people')">People</a>
 			</td>
@@ -48,9 +30,6 @@
 			<td>
 				<a href="" class="event-nav-item {{etab.map}}" ng:click="changeTab('map'); showMap();">Map</a>
 			</td>
-			<td>
-				<a href="" class="event-nav-item {{etab.comments}}" ng:click="changeTab('comments')">Comments</a>
-			</td>
 			<td ng:if="event.hashtag">
 				<a href="" class="event-nav-item {{etab.instagram}}" ng:click="changeTab('instagram')">Instagram</a>
 			</td>
@@ -58,7 +37,84 @@
 
 	</table>
 
+	<div class="info-wrap" ng:show="etab.info">
+
+		<div class="event-top">
+
+			<div class="event-top-cell">
+
+				<div class="event-info"><span class="GREY">From:</span>&nbsp;&nbsp;&nbsp;&nbsp;{{days[event.from.getUTCDay()].long}},&nbsp;{{months[event.from.getUTCMonth()].long}}&nbsp;{{event.from.getUTCDate()}},&nbsp;{{event.from.getUTCFullYear()}}</div>
+				<div class="event-info"><span class="GREY">To:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{days[event.to.getUTCDay()].long}},&nbsp;{{months[event.to.getUTCMonth()].long}}&nbsp;{{event.to.getUTCDate()}},&nbsp;{{event.to.getUTCFullYear()}}</div>
+				<div class="event-info" ng:if="event.location"><span class="GREY">Where:</span>&nbsp;&nbsp;{{event.location}}</div>
+				<div class="event-info" ng:if="event.description_html">
+					<div class="event-details" ng:if="event.description_html" ng-bind-html-unsafe="event.description_html">{{event.description_html}}</div>
+				</div>
+
+			</div>
+			<div class="event-top-cell">
+
+				<div class="event-invite">
+
+					<button class="btn">Accept Invite</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<div class="comments-wrap">
+
+			<textarea class="full comment-text" placeholder="Leave Comment"></textarea>
+
+			<div class="comments-comment type-{{comment.d_class}}" ng:repeat="comment in comments">
+				<div class="comment-wrap">
+
+					<div class="comment-user">
+						{{comment.show_name}}:
+					</div>
+					<div class="CLEAR"></div>
+					<div class="comment-body">
+						<div ng-bind-html-unsafe="comment.body_html">{{comment.body_html}}</div>
+						<div class="comment-date">{{comment.clean_date}}</div>
+					</div>
+					<div class="CLEAR"></div>
+
+				</div>
+				<div class="CLEAR"></div>
+			</div>
+
+		</div>
+
+	</div>
+
 	<div class="people-wrap" ng:show="etab.people">
+
+		<div class="menu-wrap">
+
+			<ul class="menu-container">
+				<li class="menu-section">
+
+					<div class="menu-label">Invite People</div>
+
+					<ul class="menu-items">
+						<li class="menu-item">
+							<div class="{{invite_class}}" ng:if="invite_class">{{invite_message}}</div>
+							<input type="text" class="full" placeholder="Enter Email" id="invite_display" ng:model="invite_display" onenter="invitePerson(invite_display)" />
+						</li>
+						<!--<li class="menu-item" ng:repeat="contact in contacts.all">
+							<a href="" class="menu-item-label">
+								<div class="maintext F14">{{contact.name}}</div>
+								<div class="subtext F12">{{contact.email}}</div>
+							</a>
+						</li>-->
+					</ul>
+
+				</li>
+			</ul>
+
+		</div>
 
 		<table class="people-table" cellpadding="0" cellspacing="0" border="0">
 			<tr>
@@ -72,8 +128,8 @@
 								<div class="menu-label">Invited</div>
 
 								<ul class="menu-items">
-									<li class="menu-item" ng:repeat="invite in invitations">
-										<a href="" class="menu-item-label">
+									<li class="menu-item" ng:repeat="invite in invitations.invited">
+										<a href="" class="menu-item-label" ng:click="uninvitePerson(invite)">
 											<div class="maintext F14">{{invite.user.name}}</div>
 											<div class="subtext F12">{{invite.user.email}}</div>
 										</a>
@@ -96,7 +152,7 @@
 								<div class="menu-label confirmed">Confirmed</div>
 
 								<ul class="menu-items">
-									<li class="menu-item" ng:repeat="invite in invitations" ng:show="invite.accepted">
+									<li class="menu-item" ng:repeat="invite in invitations.confirmed">
 										<a href="" class="menu-item-label">
 											<div class="maintext F14">{{invite.user.name}}</div>
 											<div class="subtext F12">{{invite.user.email}}</div>
@@ -120,7 +176,7 @@
 								<div class="menu-label declined">Declined</div>
 
 								<ul class="menu-items">
-									<li class="menu-item" ng:repeat="invite in invitations" ng:show="!invite.accepted">
+									<li class="menu-item" ng:repeat="invite in invitations.declined">
 										<a href="" class="menu-item-label">
 											<div class="maintext F14">{{invite.user.name}}</div>
 											<div class="subtext F12">{{invite.user.email}}</div>
@@ -142,7 +198,7 @@
 	<div class="map-wrap" ng:show="etab.map">
 
 		<div id="map-canvas">Location Not Found</div>
-		<input type="text" class="lrg full" placeholder="Directions (Address, City, Place...)" />
+		<!--<input type="text" class="lrg full" placeholder="Directions (Address, City, Place...)" />-->
 
 	</div>
 

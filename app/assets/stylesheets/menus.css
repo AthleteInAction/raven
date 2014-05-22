@@ -7,7 +7,7 @@ div.menu-wrap {
 div.menu-wrap ul.menu-container {
 	background: #6f6f6f;
 	list-style: none;
-	border-radius: 2px;
+	border-radius: 3px;
 	border: 1px solid #3f3f3f;
 	padding: 0;
 	margin-top: 0;
@@ -40,10 +40,10 @@ div.menu-wrap ul.menu-container li.menu-section div.menu-label {
 	text-shadow: 1px 1px 0 #1f1f1f;
 }
 div.menu-wrap ul.menu-container li.menu-section:first-child a.menu-label.selected {
-	border-radius: 2px 2px 0 0;
+	border-radius: 3px 3px 0 0;
 }
 div.menu-wrap ul.menu-container li.menu-section:last-child a.menu-label.selected {
-	border-radius: 0 0 2px 2px;
+	border-radius: 0 0 3px 3px;
 }
 
 div.menu-wrap ul.menu-container li.menu-section a.menu-label.selected {
@@ -87,6 +87,7 @@ div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item:first
 }
 div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item:last-child a.menu-item-label {
 	border-bottom: none;
+	border-radius: 0 0 3px 3px;
 }
 
 div.menu-wrap ul.menu-container li.menu-section ul.menu-items li.menu-item a.menu-item-label div.maintext {

@@ -105,9 +105,19 @@ module Api
 
   		end
 
-      def nnnnnnn
+      def destroy
 
-        
+          @invitation = Invitation.find(params[:id])
+
+          if @invitation.destroy
+
+            render json: {invitation: {id: params[:id].to_f.round}}
+
+          else
+
+            render json: @invitation.errors,status: :unprocessable_entity
+
+          end
 
       end
 

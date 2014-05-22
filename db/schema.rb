@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408022415) do
+ActiveRecord::Schema.define(version: 20140515094122) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20140408022415) do
     t.string   "start_location"
     t.string   "itype",          default: "event"
     t.string   "role"
-    t.boolean  "accepted",       default: false
+    t.integer  "accepted",       default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
