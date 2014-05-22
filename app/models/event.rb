@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
 	has_many :comments
 	has_many :expenses
 
-	attr_accessible :user_id,:title,:description,:description_html,:location,:start_date,:end_date
+	attr_accessible :user_id,:title,:description,:description_html,:location,:hashtag,:start_date,:end_date
 
 	validates_presence_of :title,:location,:start_date,:end_date
 	validates_with EventValidator

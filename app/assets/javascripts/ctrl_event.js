@@ -69,12 +69,35 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 					$scope.event = data.event;
 					$scope.event.from = new Date(Date.parse(data.event.start_date));
 					$scope.event.to = new Date(Date.parse(data.event.end_date));
-					$scope.event.hashtag = 'tpcsawgrass';
 
 					$scope.getInvitations();
 					$scope.getComments();
+					if (data.event.hashtag){$scope.getInstagram();}
 
 				},0);
+
+			});
+
+		};
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
+
+
+
+		// Get Instagram
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
+		$scope.getInstagram = function(){
+
+			this.options = {
+				type: 'instagram',
+				extend: $scope.event.hashtag
+			};
+
+			ApiModel.query(this.options,function(data){
+
+				$scope.instagrams = data.body.data;
+				JP(data.body);
 
 			});
 
