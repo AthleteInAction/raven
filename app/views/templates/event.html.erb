@@ -1,4 +1,4 @@
-<div ng:if="!event.id">
+<div ng:show="!event.id">
 
 	Loading...
 	<table class="event-nav invis" cellpadding="0" cellspacing="0" border="0">
@@ -10,7 +10,7 @@
 	</table>
 
 </div>
-<div ng:if="event.id">
+<div ng:show="event.id">
 
 	<div class="event-title">{{event.title}}</div>
 	<div class="event-hashtag" ng:if="event.hashtag">#{{event.hashtag}}</div>
@@ -53,9 +53,10 @@
 			</div>
 			<div class="event-top-cell">
 
-				<div class="event-invite">
+				<div class="event-invite" ng:if="myInvitation.role != 'creator' && myInvitation">
 
-					<button class="btn">Accept Invite</button>
+					<button class="btn" ng:if="myInvitation.accepted != 1" ng:click="updateInvite(1)">Accept Invite</button>
+					<button class="btn" ng:if="myInvitation.accepted != 2" ng:click="updateInvite(2)">Decline Invite</button>
 
 				</div>
 
@@ -65,8 +66,8 @@
 
 
 		<div class="comments-wrap">
-
-			<textarea class="full comment-text" placeholder="Leave Comment"></textarea>
+			
+			<textarea class="full comment-text" placeholder="Leave Comment" onenter="submitComment()" ng:model="comment_text"></textarea>
 
 			<div class="comments-comment type-{{comment.d_class}}" ng:repeat="comment in comments">
 				<div class="comment-wrap">
@@ -75,7 +76,7 @@
 						{{comment.show_name}}:
 					</div>
 					<div class="CLEAR"></div>
-					<div class="comment-body">
+					<div class="comment-body" id="comment_body_{{$index}}">
 						<div ng-bind-html-unsafe="comment.body_html">{{comment.body_html}}</div>
 						<div class="comment-date">{{comment.clean_date}}</div>
 					</div>

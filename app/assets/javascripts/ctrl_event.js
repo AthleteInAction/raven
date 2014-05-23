@@ -97,7 +97,6 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 			ApiModel.query(this.options,function(data){
 
 				$scope.instagrams = data.body.data;
-				JP(data.body);
 
 			});
 
@@ -141,8 +140,6 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 					$scope.comments.push(comment);
 
 				});
-
-				JP({comments: $scope.comments});
 
 			});
 
@@ -222,7 +219,6 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 				});
 
 				$scope.invitations = tmp;
-				JP($scope.contacts);
 
 				$scope.getContacts();
 
@@ -308,8 +304,6 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 				}
 
 			},300);
-			//$scope.atest = 'BYE';
-			//JP(emailValidate.test($scope.invite_input));
 
 		};
 		////////////////////////////////////////////////////////////////////////////////
@@ -343,8 +337,6 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 					delete $scope.contacts.invited[invite.user.id];
 					$scope.contacts.uninvited[invite.user.id] = invite.user;
 				}
-
-				JP($scope.contacts);
 
 				$scope.setAutocomplete();
 
@@ -405,7 +397,6 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 				tmp.push(user);
 
 			});
-			JP(tmp);
 
 			$('#invite_display').autocomplete({
 				source: function(request,response){
@@ -456,5 +447,84 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 		};
 		////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////
+
+
+
+		// Submit Comment
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
+		$scope.submitComment = function(){
+
+			this.options = {
+				type: 'events',
+				id: $scope.params.id,
+				extend: 'comments'
+			};
+
+
+			this.comment = {
+				event_id: $scope.params.id,
+				user_id: current_user.id,
+				body: $scope.comment_text
+			};
+
+			var Comment = new ApiModel({comment: this.comment});
+
+			Comment.$create(this.options,function(data){
+
+				data.comment.user = $scope.users[data.comment.user_id];
+				data.comment.d_class = 'me';
+
+				if (data.comment.user.name){
+					data.comment.show_name = data.comment.user.name;
+				} else {
+					data.comment.show_name = data.comment.user.email;
+				}
+
+				$scope.comments.unshift(data.comment);
+
+				$scope.comment_text = null;
+
+				$timeout(function(){
+					$('#comment_body_0').effect('highlight',{},1000);
+				},0);
+
+			});
+
+		};
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
+
+
+
+		// Update Invite
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
+		$scope.updateInvite = function(val){
+
+			this.options = {
+				type: 'invitations',
+				id: $scope.myInvitation.id
+			};
+
+			this.invitation = {
+				invitation: {
+					accepted: val
+				}
+			};
+
+			var Invite = new ApiModel(this.invitation);
+
+			Invite.$save(this.options,function(data){
+
+				data.invitation.user = $scope.users[data.invitation.invitee_id];
+
+				$scope.myInvitation = data.invitation;
+
+			});
+
+		};
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
 
 }];
