@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
 	has_many :links
 
 	has_secure_password
-	attr_accessible :name,:email,:last_login,:password,:password_confirmation,:confirmed
-	validates_presence_of :email
+	attr_accessible :name,:email,:instagram_token,:instagram_id,:instagram_verified,:profile_pic,:last_login,:password,:password_confirmation,:confirmed
+	#validates_presence_of :email
 	validates_uniqueness_of :email
 
 end

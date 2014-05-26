@@ -340,3 +340,19 @@ for(var i=0; i<ca.length; i++)
   }
 return "";
 }
+
+
+var pop = function(url,width,height){
+
+	var w = window.innerWidth;
+	var h = window.innerHeight;
+
+	var l = ((w/2)-(width/2))+window.screenX;
+	var t = ((h/2)-(height/2))+window.screenY;
+	t = (window.screen.height/2)-(height/2);
+
+	window.open(url,'_blank','height='+height+',width='+width+',left='+l+',top='+t);
+
+	return false;
+
+};

@@ -137,9 +137,17 @@ table.event-nav tr td a.event-nav-item {
 	color: #666;
 	text-shadow: 0 1px 0 #F3F3F3;
 	font-weight: bold;
+	height: 100%;
+	font-size: 16px;
 }
-table.event-nav tr td a.event-nav-item:hover,
-table.event-nav tr td a.event-nav-item.selected {
+table.event-nav tr td.instagram-tab a.event-nav-item {
+	padding: 0px;
+}
+table.event-nav tr td.instagram-tab a.event-nav-item img {
+	margin-top: 8px;
+}
+table.event-nav tr td:hover,
+table.event-nav tr td.selected {
 	color: #3c3c3c;
 	background-color: #eee;
 	background-image: -moz-linear-gradient(#bbb, #eee);
@@ -320,4 +328,44 @@ div.comments-wrap div.comments-comment.type-other div.comment-wrap div.comment-u
 textarea.comment-text {
 	margin: 20px 0 0 0;
 	box-shadow: 3px 3px 3px #151515;
+}
+
+div.comments-wrap div.comments-comment.type-me div.comment-wrap a.comment-delete {
+	display: block;
+	float: right;
+	color: red;
+}
+
+div.instagram-wrap div.instagram-link {
+	text-align: center;
+	margin-top: 40px;
+}
+div.instagram-wrap div.instagram-link img.instagram-camera {
+	
+}
+div.instagram-wrap div.instagram-link div.instagram-text {
+	color: #838383;
+	text-shadow: 1px 1px 0 #151515;
+	text-align: left;
+	margin-left: 10px;
+	font-size: 16px;
+	text-align: center;
+}
+
+table.menu-item-table {
+	border: none;
+	border-collapse: separate;
+}
+table.menu-item-table tr td {
+	text-align: left;
+	vertical-align: middle;
+	padding: 0;
+	margin: 0;
+}
+img.profile_pic {
+	display: block;
+	height: 30px;
+	margin-top: 2px;
+	margin-right: 7px;
+	border-radius: 4px;
 }

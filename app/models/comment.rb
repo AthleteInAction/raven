@@ -2,14 +2,27 @@ class CommentValidator < ActiveModel::Validator
   
   def validate comment
 
-  	comment.body_html = comment.body.to_s.gsub(/\n/,'</br>')
+  	comment.body_html = comment.body
 
-  	comment.body_html.to_s.scan(/(http?:\/\/[\S]+|https?:\/\/[\S]+)/).each do |b|
+  	#regexps
+  	http = /( |^)http:\/\/([^\s]*\.[^\s]*)( |$)/
+  	https = /( |^)https:\/\/([^\s]*\.[^\s]*)( |$)/
+  	twitter = /@(\w+)/
 
-
-  		#comment.body_html = comment.body_html.gsub(b[0].to_s,"<a href=\"#{b[0]}\" target=\"_blank\" class=\"comment-link\">#{b[0]}</a>")
-
+  	while comment.body_html =~ http
+  	    name = $2
+  	    comment.body_html.sub! /( |^)http:\/\/#{name}( |$)/, " <a href=\"http://#{name}\" target=\"_blank\" class=\"comment-link\">http://#{name}</a> "
   	end
+  	while comment.body_html =~ https
+  	    name = $2
+  	    comment.body_html.sub! /( |^)https:\/\/#{name}( |$)/, " <a href=\"https://#{name}\" target=\"_blank\" class=\"comment-link\">https://#{name}</a> "
+  	end
+  	while comment.body_html =~ twitter
+  		name = $2
+  		comment.body_html.sub! "@#{$1}", "<a href=\"http://twitter.com/#{$1}\" target=\"_blank\" class=\"comment-link\">&#64;#{$1}</a>"
+  	end
+
+  	comment.body_html = comment.body_html.to_s.gsub(/\n/,'</br>')
 
   end
 

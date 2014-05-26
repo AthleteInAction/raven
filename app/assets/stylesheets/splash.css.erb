@@ -1,0 +1,170 @@
+#top-wrap {
+	background-color: #e7e7e7;
+	text-align: center;
+	display: block;
+	overflow: hidden;
+}
+#top-wrap div.top-content {
+	/*background-image: -moz-linear-gradient(#4b4b4b, #434343);
+	background-image: -webkit-linear-gradient(#4b4b4b, #434343);
+	background-image: linear-gradient(#4b4b4b, #434343);
+	background-repeat: repeat-x;*/
+	padding: 15px 0;
+	display: table;
+	border-spacing: 0;
+	border-collapse: separate;
+	width: 980px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+}
+#top-wrap div.top-content div.top-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+#top-wrap div.top-content div.top-cell:last-child {
+	text-align: right;
+}
+#top-wrap div.top-content div.top-cell a.corner-logo {
+	display: block;
+	width: 207px;
+	height: 48px;
+	background: url(<%= asset_path('corner-logo.png') %>) no-repeat center center;
+}
+#top-wrap div.top-content div.top-cell div.login-form {
+	
+}
+
+
+
+#mid-wrap {
+	display: block;
+	overflow: hidden;
+	height: 380px;
+	background: url(<%= asset_path('head_v1.jpg') %>) center center;
+	border-bottom: solid 4px #4d4d4d;
+}
+#mid-wrap div.mid-content {
+	margin-top: 20px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 980px;
+	text-align: center;
+}
+
+
+table.splash-table {
+	margin-right: auto;
+	margin-left: auto;
+	border: none;
+	border-collapse: separate;
+}
+table.splash-table tr td {
+	width: 50%;
+	text-align: center;
+	vertical-align: top;
+	color: #FFF;
+	text-shadow: 0px 0px 8px #5DB8A2;
+	font-size: 38px;
+	font-weight: bold;
+}
+table.splash-table tr td.splash-text {
+
+}
+table.splash-table tr td.splash-form {
+	width: 320px;
+}
+table.splash-table tr td.splash-form input {
+	width: 100%;
+	-webkit-box-sizing: border-box; // Safari/Chrome, other WebKit
+	-moz-box-sizing: border-box;    // Firefox, other Gecko
+	box-sizing: border-box; 
+	margin-bottom: 7px;
+	margin-right: 0;
+	margin-left: 0;
+	margin-top: 0;
+	font-size: 16px;
+	padding: 12px;
+	border-radius: 5px;
+}
+table.splash-table tr td.splash-social {
+	width: 360px;
+	padding-left: 40px;
+}
+
+
+
+
+input.splash-btn {
+	position: relative;
+	display: inline-block;
+	padding: 6px 7px 6px 7px;
+	margin-top: 1px;
+	font-size: 13px;
+	font-weight: bold;
+	color: #333;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+	white-space: nowrap;
+	background-color: #eeeeee;
+	background-image: -moz-linear-gradient(#fcfcfc, #eee);
+	background-image: -webkit-linear-gradient(#fcfcfc, #eee);
+	background-image: linear-gradient(#fcfcfc, #eee);
+	background-repeat: repeat-x;
+	border-radius: 3px;
+	border: 1px solid #d5d5d5;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-appearance: none;
+	min-width: 30px;
+}
+input.splash-btn:hover {
+	background-color: #eeeeee;
+	background-image: -moz-linear-gradient(#FFF, #eee);
+	background-image: -webkit-linear-gradient(#FFF, #eee);
+	background-image: linear-gradient(#FFF, #eee);
+	color: #64E6C6;
+	text-shadow: 0 1px 0 #FDFDFD;
+}
+input.dark-btn:active {
+	background-image: -moz-linear-gradient(#616161, #8F8F8F);
+	background-image: -webkit-linear-gradient(#616161, #8F8F8F);
+	background-image: linear-gradient(#616161, #8F8F8F);
+	background-repeat: repeat-x;
+}
+
+
+div.social-wrap {
+	cursor: pointer;
+}
+div.social-wrap div.menu-wrap {
+	padding:3px;
+	border-radius: 3px;
+}
+table.social-table {
+	width: 100%;
+	border: none;
+	border-collapse: separate;
+}
+table.social-table tr td {
+	width: inherit;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	text-align: center;
+	color: #CCC;
+	text-shadow: 1px 1px 0 #151515;
+	font-size: 18px;
+}
+table.social-table tr td:first-child {
+	width: 1px;
+}
+table.social-table tr td img {
+	height: 40px;
+	display: block;
+}

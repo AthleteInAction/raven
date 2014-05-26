@@ -22,7 +22,11 @@ Raven::Application.routes.draw do
         get 'users',to: 'events#users'
       end
 
-      get 'instagram/:hashtag',to: 'instagram#index'
+      get 'instagram/tag/:hashtag',to: 'instagram#tag'
+
+      get 'instagram/verify',to: 'instagram#verify'
+      get 'instagram/token',to: 'instagram#token'
+      get 'instagram/check',to: 'instagram#check'
 
       resources :links
       resources :invitations

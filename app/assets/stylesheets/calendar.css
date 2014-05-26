@@ -2,6 +2,7 @@
 	background: #505050;
 	padding: 3px;	
 	border-radius: 3px;
+	margin-top: 15px;
 }
 #calendar div.week {
 	height:88px;

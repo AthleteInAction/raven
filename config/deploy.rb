@@ -40,7 +40,7 @@ namespace :deploy do
 	end
 	task :rake_it do
 
-		#run "cd #{deploy_to}/current && rake db:migrate"
+		run "cd #{deploy_to}/current && rake db:migrate"
 
 	end
 	task :start do ; end

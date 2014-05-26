@@ -18,20 +18,22 @@
 	<table class="event-nav" cellpadding="0" cellspacing="0" border="0">
 
 		<tr>
-			<td>
-				<a href="" class="event-nav-item {{etab.info}}" ng:click="changeTab('info')">Info</a>
+			<td class="{{etab.info}}">
+				<a href="" class="event-nav-item" ng:click="changeTab('info')">Info</a>
 			</td>
-			<td>
-				<a href="" class="event-nav-item {{etab.people}}" ng:click="changeTab('people')">People</a>
+			<td class="{{etab.people}}">
+				<a href="" class="event-nav-item" ng:click="changeTab('people')">People</a>
 			</td>
-			<td>
-				<a href="" class="event-nav-item {{etab.expenses}}" ng:click="changeTab('expenses')">Expenses</a>
+			<td class="{{etab.expenses}}">
+				<a href="" class="event-nav-item" ng:click="changeTab('expenses')">Expenses</a>
 			</td>
-			<td>
-				<a href="" class="event-nav-item {{etab.map}}" ng:click="changeTab('map'); showMap();">Map</a>
+			<td class="{{etab.map}}">
+				<a href="" class="event-nav-item" ng:click="changeTab('map'); geocode(event.location);">Map</a>
 			</td>
-			<td ng:if="event.hashtag">
-				<a href="" class="event-nav-item {{etab.instagram}}" ng:click="changeTab('instagram')">Instagram</a>
+			<td ng:if="event.hashtag" class="instagram-tab {{etab.instagram}}">
+				<a href="" class="event-nav-item" ng:click="changeTab('instagram')">
+					<img src="<%= asset_path('instagram-tab.png') %>">
+				</a>
 			</td>
 		</tr>
 
@@ -66,7 +68,7 @@
 
 
 		<div class="comments-wrap">
-			
+
 			<textarea class="full comment-text" placeholder="Leave Comment" onenter="submitComment()" ng:model="comment_text"></textarea>
 
 			<div class="comments-comment type-{{comment.d_class}}" ng:repeat="comment in comments">
@@ -80,6 +82,7 @@
 						<div ng-bind-html-unsafe="comment.body_html">{{comment.body_html}}</div>
 						<div class="comment-date">{{comment.clean_date}}</div>
 					</div>
+					<!--<a href="" class="comment-delete">X</a>-->
 					<div class="CLEAR"></div>
 
 				</div>
@@ -131,8 +134,19 @@
 								<ul class="menu-items">
 									<li class="menu-item" ng:repeat="invite in invitations.invited">
 										<a href="" class="menu-item-label" ng:click="uninvitePerson(invite)">
-											<div class="maintext F14">{{invite.user.name}}</div>
-											<div class="subtext F12">{{invite.user.email}}</div>
+
+											<table class="menu-item-table">
+												<tr>
+													<td ng:if="invite.user.profile_pic">
+														<img src="{{invite.user.profile_pic}}" class="profile_pic" />
+													</td>
+													<td>
+														<div class="maintext F14">{{invite.user.name}}</div>
+														<div class="subtext F12">{{invite.user.email}}</div>
+													</td>
+												</tr>
+											</table>
+
 										</a>
 									</li>
 								</ul>
@@ -155,8 +169,19 @@
 								<ul class="menu-items">
 									<li class="menu-item" ng:repeat="invite in invitations.confirmed">
 										<a href="" class="menu-item-label">
-											<div class="maintext F14">{{invite.user.name}}</div>
-											<div class="subtext F12">{{invite.user.email}}</div>
+											
+											<table class="menu-item-table">
+												<tr>
+													<td ng:if="invite.user.profile_pic">
+														<img src="{{invite.user.profile_pic}}" class="profile_pic" />
+													</td>
+													<td>
+														<div class="maintext F14">{{invite.user.name}}</div>
+														<div class="subtext F12">{{invite.user.email}}</div>
+													</td>
+												</tr>
+											</table>
+
 										</a>
 									</li>
 								</ul>
@@ -179,8 +204,19 @@
 								<ul class="menu-items">
 									<li class="menu-item" ng:repeat="invite in invitations.declined">
 										<a href="" class="menu-item-label">
-											<div class="maintext F14">{{invite.user.name}}</div>
-											<div class="subtext F12">{{invite.user.email}}</div>
+											
+											<table class="menu-item-table">
+												<tr>
+													<td ng:if="invite.user.profile_pic">
+														<img src="{{invite.user.profile_pic}}" class="profile_pic" />
+													</td>
+													<td>
+														<div class="maintext F14">{{invite.user.name}}</div>
+														<div class="subtext F12">{{invite.user.email}}</div>
+													</td>
+												</tr>
+											</table>
+											
 										</a>
 									</li>
 								</ul>
@@ -203,7 +239,14 @@
 
 	</div>
 
-	<div class="instagram-wrap" ng:show="etab.instagram">
+	<div class="instagram-wrap" ng:show="etab.instagram" align="center">
+
+		<div class="instagram-link" ng:if="!current_user.instagram_verified">
+
+			<%= image_tag 'camera-100.png',class: 'instagram-camera' %>
+			<div class="instagram-text"><a href="https://api.instagram.com/oauth/authorize/?client_id=066491d54faf4644bc92586ba4b7953c&redirect_uri=http://localhost:3000/api/v1/instagram/verify&response_type=code" onclick="return pop(this.href,500,400);" ng:if="true">Click&nbsp;here</a> to link your Instagram account and view all posts associated with this event (#{{event.hashtag}}).</div>
+
+		</div>
 
 		<div class="instagram-img" ng:repeat="post in instagrams"><img src="{{post.images.standard_resolution.url}}" /></div>
 

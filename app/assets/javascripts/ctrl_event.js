@@ -72,7 +72,8 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 
 					$scope.getInvitations();
 					$scope.getComments();
-					if (data.event.hashtag){$scope.getInstagram();}
+					if (data.event.hashtag && current_user.instagram_verified){$scope.getInstagram();}
+					//if (data.event.location){$scope.geocode(data.event.location);}
 
 				},0);
 
@@ -91,12 +92,22 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 
 			this.options = {
 				type: 'instagram',
-				extend: $scope.event.hashtag
+				extend: 'tag',
+				second: $scope.event.hashtag
 			};
 
 			ApiModel.query(this.options,function(data){
 
-				$scope.instagrams = data.body.data;
+				if (data.code == 200){
+
+					$scope.instagrams = data.body.data;
+
+				} else {
+
+					current_user.instagram_verified = false;
+					current_user.instagram_token = null;
+
+				}
 
 			});
 
@@ -521,6 +532,63 @@ var EventCtrl = ['$scope','$routeParams','$location','$route','ApiModel','$timeo
 
 				$scope.myInvitation = data.invitation;
 
+			});
+
+		};
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
+
+
+
+		// Geocode
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
+		$scope.geocode = function(location){
+
+			$scope.geocoder = new google.maps.Geocoder();
+
+			$scope.geocoder.geocode({address: location},function(results,status){
+
+				if (status == google.maps.GeocoderStatus.OK){
+					
+					$scope.geoLocation = results;
+					$scope.setMap();
+					JP(results);
+
+				} else {
+
+					JP('Location not Found');
+
+				}
+
+			});
+
+		};
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
+
+
+
+		// Set Map
+		////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////
+		$scope.setMap = function(){
+
+			//$scope.directionsDisplay = new google.maps.DirectionsRenderer();
+			//$scope.directionsDisplay.setPanel(document.getElementById('directions-panel'));
+
+			$scope.mapOptions = {
+				zoom: 8,
+				center: $scope.geoLocation[0].geometry.location
+			};
+
+			$scope.map = new google.maps.Map(document.getElementById('map-canvas'),$scope.mapOptions);
+
+			$scope.marker = new google.maps.Marker({
+			    map: $scope.map,
+			    position: $scope.mapOptions.center,
+			    title: $scope.event.location,
+			    animation: google.maps.Animation.DROP
 			});
 
 		};

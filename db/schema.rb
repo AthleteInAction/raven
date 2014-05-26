@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522120745) do
+ActiveRecord::Schema.define(version: 20140525104111) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -35,11 +35,11 @@ ActiveRecord::Schema.define(version: 20140522120745) do
     t.text     "description"
     t.text     "description_html"
     t.text     "location"
+    t.string   "hashtag"
     t.date     "start_date"
     t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "hashtag"
   end
 
   create_table "expenses", force: true do |t|
@@ -75,10 +75,14 @@ ActiveRecord::Schema.define(version: 20140522120745) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "last_login",      default: '2014-03-23 04:52:50'
-    t.boolean  "confirmed",       default: false
+    t.integer  "instagram_id"
+    t.boolean  "instagram_verified", default: false
+    t.string   "instagram_token"
+    t.datetime "last_login",         default: '2014-03-23 04:52:50'
+    t.boolean  "confirmed",          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "profile_pic"
   end
 
 end

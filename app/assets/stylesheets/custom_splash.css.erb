@@ -15,9 +15,52 @@
 	display: block;
 }
 
-.splash_signup h1 {
+table.splash-table tr td h1 {
 	line-height: .5em;
-	font-size:45px;
+	font-size:35px;
 	color:#FFF;
 	text-shadow: 1px 1px 2px rgba(76,188,145,1);
+}
+
+
+
+
+button.social_login {
+	border-radius: 3px;
+	width: 300px;
+	cursor: pointer;
+}
+button.social_login div.button_logo {
+	float: left;
+	height: 34px;
+	width: 29px;
+}
+button.social_login div.button_text {
+	float: left;
+	color: #FFF;
+	text-shadow: 1px 1px 0px #000000;
+	font-size: 16px;
+	margin: 7px 0 0 15px;
+}
+
+button.social_login.facebook {
+	background-color: #43609b;
+	background: -webkit-linear-gradient(#5678bc, #314a7b);
+	background: linear-gradient(#5678bc, #314a7b);
+	border: 1px solid #293f69;
+	border-top-color: #314a7b;
+}
+button.social_login.facebook div.button_logo {
+	background: url(<%= asset_path('FB-f-Logo__blue_29.png') %>) left center no-repeat;
+}
+
+button.social_login.instagram {
+	background-color: #43609b;
+	background: -webkit-linear-gradient(#F8F6EF, #888379);
+	background: linear-gradient(#F8F6EF, #888379);
+	border: 1px solid #5F4F43;
+	border-top-color: #AA9683;
+}
+button.social_login.instagram div.button_logo {
+	background: url(<%= asset_path('camera-login-29.png') %>) left center no-repeat;
 }
