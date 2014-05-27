@@ -134,7 +134,7 @@ DEPENDENCIES
   active_model_serializers
   angularjs-rails
   bcrypt-ruby (~> 3.0.0)
-  capistrano (~> 2.15.5)
+  capistrano (~> 2.0)
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails

@@ -42,7 +42,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano','~> 2.15.5'
+gem 'capistrano','~> 2.0'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
@@ -50,3 +50,5 @@ gem 'capistrano','~> 2.15.5'
 gem 'mysql2'
 gem 'protected_attributes'
 gem 'active_model_serializers'
+
+# cat ~/.ssh/id_rsa.pub | ssh deployer@166.78.151.145 'cat >> ~/.ssh/authorized_keys'
