@@ -73,7 +73,7 @@ module Api
           body = JSON.parse response.body
           code = response.code.to_f.round
 
-          @user = User.find_by_instagram_id body['user']['id'].to_f.round+999
+          @user = User.find_by_instagram_id body['user']['id'].to_f.round
 
           if @user
 
