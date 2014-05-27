@@ -47,11 +47,18 @@ module Api
 
       def verify
 
-        @final = {code: 999,error: 'No instagram code was provided'}
+        @final = {code: 999,error: 'There was an error'}
 
         if params[:type] == 'new' && params[:code]
 
-          uri = URI.parse('https://api.instagram.com/oauth/access_token')
+          http = Net::HTTP.new 'api.instagram.com',443
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          http.use_ssl = true
+
+          uri = URI.escape '/oauth/access_token'
+
+          req = Net::HTTP::Post.new uri
+
           payload = {
             client_id: INFRA[:instagram][:client_id],
             client_secret: INFRA[:instagram][:client_secret],
@@ -59,11 +66,14 @@ module Api
             redirect_uri: "#{INFRA[:instagram][:redirect_uri]}?type=new",
             code: params[:code]
           }
-          response = Net::HTTP.post_form(uri,payload)
-          body = JSON.parse(response.body)
+
+          req.set_form_data payload
+
+          response = http.request req
+          body = JSON.parse response.body
           code = response.code.to_f.round
 
-          @user = User.find_by_instagram_id body['user']['id'].to_f.round
+          @user = User.find_by_instagram_id body['user']['id'].to_f.round+999
 
           if @user
 
@@ -90,9 +100,14 @@ module Api
 
         if params[:type] == 'verify' && params[:code]
 
-          @user = User.find current_user.id
+          http = Net::HTTP.new 'api.instagram.com',443
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          http.use_ssl = true
 
-          uri = URI.parse('https://api.instagram.com/oauth/access_token')
+          uri = URI.escape '/oauth/access_token'
+
+          req = Net::HTTP::Post.new uri
+
           payload = {
             client_id: INFRA[:instagram][:client_id],
             client_secret: INFRA[:instagram][:client_secret],
@@ -100,11 +115,14 @@ module Api
             redirect_uri: "#{INFRA[:instagram][:redirect_uri]}?type=verify",
             code: params[:code]
           }
-          response = Net::HTTP.post_form(uri,payload)
-          body = JSON.parse(response.body)
+
+          req.set_form_data payload
+
+          response = http.request req
+          body = JSON.parse response.body
           code = response.code.to_f.round
 
-          @user.update_attributes instagram_id: body['user']['id'],instagram_verified: true,instagram_token: body['access_token'],profile_pic: body['user']['profile_picture']
+          current_user.update_attributes instagram_id: body['user']['id'],instagram_verified: true,instagram_token: body['access_token'],profile_pic: body['user']['profile_picture']
 
           render 'shell',layout: false
 
@@ -124,6 +142,24 @@ module Api
 
 
   		def verify1
+
+        @user = User.find current_user.id
+
+        uri = URI.parse('https://api.instagram.com/oauth/access_token')
+        payload = {
+          client_id: INFRA[:instagram][:client_id],
+          client_secret: INFRA[:instagram][:client_secret],
+          grant_type: 'authorization_code',
+          redirect_uri: "#{INFRA[:instagram][:redirect_uri]}?type=verify",
+          code: params[:code]
+        }
+        response = Net::HTTP.post_form(uri,payload)
+        body = JSON.parse(response.body)
+        code = response.code.to_f.round
+
+        @user.update_attributes instagram_id: body['user']['id'],instagram_verified: true,instagram_token: body['access_token'],profile_pic: body['user']['profile_picture']
+
+        render 'shell',layout: false
 
   			if params[:code]
 

@@ -31,7 +31,7 @@ GEM
       tzinfo (~> 1.1)
     angularjs-rails (1.2.16)
     arel (5.0.1.20140414130214)
-    bcrypt-ruby (3.0.1)
+    bcrypt (3.1.7)
     builder (3.2.2)
     capistrano (2.15.5)
       highline
@@ -48,7 +48,7 @@ GEM
     coffee-script-source (1.7.0)
     erubis (2.7.0)
     execjs (2.0.2)
-    highline (1.6.19)
+    highline (1.6.21)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -133,7 +133,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   angularjs-rails
-  bcrypt-ruby (~> 3.0.0)
+  bcrypt
   capistrano (~> 2.0)
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
