@@ -51,4 +51,4 @@ gem 'mysql2'
 gem 'protected_attributes'
 gem 'active_model_serializers'
 
-# cat ~/.ssh/id_rsa.pub | ssh deployer@166.78.151.145 'cat >> ~/.ssh/authorized_keys'
+# cat ~/.ssh/id_rsa.pub | ssh reaper@166.78.151.145 'cat >> ~/.ssh/authorized_keys'

@@ -50,7 +50,7 @@
 			<table class="splash-table">
 				<tr>
 					<td class="splash-form">
-						<span>Sign Up for Free!</span>
+						<span>Sign Up for Free! (<%= Rails.env %>)</span>
 						<%= render 'form' %>
 						<div class="social-wrap" onclick="pop('https://api.instagram.com/oauth/authorize/?client_id=066491d54faf4644bc92586ba4b7953c&redirect_uri=http://localhost:3000/api/v1/instagram/verify%3ftype=new&response_type=code',500,400)">
 							<div class="menu-wrap">
