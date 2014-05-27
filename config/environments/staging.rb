@@ -77,4 +77,14 @@ Raven::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  INFRA = {
+    instagram: {
+      client_id: 'aa32ba2129914b28b9e27c34804cf288',
+      client_secret: '5a836017b44a4e85b0bf2b309562c455',
+      website_url: 'http://166.78.151.145',
+      redirect_uri: 'http://166.78.151.145/api/v1/instagram/verify'
+    }
+  }
+  
 end

@@ -30,11 +30,13 @@
 			<div class="top-cell">
 
 				<div class="login-form">
-				<%= form_tag sessions_path do %>
-					<%= text_field_tag :email,nil,placeholder: 'Email' %>
-					<%= password_field_tag :password,nil,placeholder: 'Password' %>
-					<%= submit_tag "Sign In",class: 'btn splash-btn' %>
-				<% end %>
+				
+					<%= form_tag sessions_path do %>
+						<%= text_field_tag :email,nil,placeholder: 'Email' %>
+						<%= password_field_tag :password,nil,placeholder: 'Password' %>
+						<%= submit_tag "Sign In",class: 'btn splash-btn' %>
+					<% end %>
+
 				</div>
 
 			</div>
@@ -52,7 +54,7 @@
 					<td class="splash-form">
 						<span>Sign Up for Free!</span>
 						<%= render 'form' %>
-						<div class="social-wrap" onclick="pop('https://api.instagram.com/oauth/authorize/?client_id=066491d54faf4644bc92586ba4b7953c&redirect_uri=http://localhost:3000/api/v1/instagram/verify%3ftype=new&response_type=code',500,400)">
+						<div class="social-wrap" onclick="pop('https://api.instagram.com/oauth/authorize/?client_id=<%= INFRA[:instagram][:client_id] %>&redirect_uri=<%= INFRA[:instagram][:redirect_uri] %>%3ftype=new&response_type=code',500,400)">
 							<div class="menu-wrap">
 
 								<ul class="menu-container">
@@ -83,6 +85,12 @@
 			</table>
 
 		</div>
+
+	</div>
+
+	<div id="btm-wrap">
+
+
 
 	</div>
 

@@ -53,17 +53,17 @@ module Api
 
           uri = URI.parse('https://api.instagram.com/oauth/access_token')
           payload = {
-            client_id: '066491d54faf4644bc92586ba4b7953c',
-            client_secret: 'a24f1c31b6044abcba0bf359fb3aaebf',
+            client_id: INFRA[:instagram][:client_id],
+            client_secret: INFRA[:instagram][:client_secret],
             grant_type: 'authorization_code',
-            redirect_uri: 'http://localhost:3000/api/v1/instagram/verify?type=new',
+            redirect_uri: "#{INFRA[:instagram][:redirect_uri]}?type=new",
             code: params[:code]
           }
           response = Net::HTTP.post_form(uri,payload)
           body = JSON.parse(response.body)
           code = response.code.to_f.round
 
-          @user = User.find_by_instagram_id body['user']['id'].to_f.round+67678
+          @user = User.find_by_instagram_id body['user']['id'].to_f.round
 
           if @user
 
@@ -85,6 +85,28 @@ module Api
             end
 
           end
+
+        end
+
+        if params[:type] == 'verify' && params[:code]
+
+          @user = User.find current_user.id
+
+          uri = URI.parse('https://api.instagram.com/oauth/access_token')
+          payload = {
+            client_id: INFRA[:instagram][:client_id],
+            client_secret: INFRA[:instagram][:client_secret],
+            grant_type: 'authorization_code',
+            redirect_uri: "#{INFRA[:instagram][:redirect_uri]}?type=verify",
+            code: params[:code]
+          }
+          response = Net::HTTP.post_form(uri,payload)
+          body = JSON.parse(response.body)
+          code = response.code.to_f.round
+
+          @user.update_attributes instagram_id: body['user']['id'],instagram_verified: true,instagram_token: body['access_token'],profile_pic: body['user']['profile_picture']
+
+          render 'shell',layout: false
 
         end
 

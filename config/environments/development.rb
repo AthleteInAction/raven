@@ -34,4 +34,14 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  INFRA = {
+    instagram: {
+      client_id: '066491d54faf4644bc92586ba4b7953c',
+      client_secret: 'a24f1c31b6044abcba0bf359fb3aaebf',
+      website_url: 'http://localhost:3000',
+      redirect_uri: 'http://localhost:3000/api/v1/instagram/verify'
+    }
+  }
+
 end

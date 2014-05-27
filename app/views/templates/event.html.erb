@@ -244,7 +244,7 @@
 		<div class="instagram-link" ng:if="!current_user.instagram_verified">
 
 			<%= image_tag 'camera-100.png',class: 'instagram-camera' %>
-			<div class="instagram-text"><a href="https://api.instagram.com/oauth/authorize/?client_id=066491d54faf4644bc92586ba4b7953c&redirect_uri=http://localhost:3000/api/v1/instagram/verify&response_type=code" onclick="return pop(this.href,500,400);" ng:if="true">Click&nbsp;here</a> to link your Instagram account and view all posts associated with this event (#{{event.hashtag}}).</div>
+			<div class="instagram-text"><a href="https://api.instagram.com/oauth/authorize/?client_id=<%= INFRA[:instagram][:client_id] %>&redirect_uri=<%= INFRA[:instagram][:redirect_uri] %>%3ftype=verify&response_type=code" onclick="return pop(this.href,500,400);" ng:if="true">Click&nbsp;here</a> to link your Instagram account and view all posts associated with this event (#{{event.hashtag}}).</div>
 
 		</div>
 
